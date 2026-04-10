@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&D Tax Offset Calculator — RDKit</title>
+    <meta name="description" content="See exactly how much Australian R&D tax offset you could claim. Interactive calculator for instant estimates.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root{
+            --bg:#FAFBFF;--bg-alt:#F0F1F8;--bg-dark:#0E1128;--card:#FFF;--card-border:#E2E4F0;
+            --charcoal:#1A1A2E;--coral:#FF6B54;--coral-glow:rgba(255,107,84,0.25);--cyan:#00B4D8;
+            --cyan-light:#E0F7FA;--cyan-glow:rgba(0,180,216,0.15);--purple:#9B7FFF;--purple-light:#F0ECFF;
+            --sage:#4ECBA0;--sage-light:#E6F9F1;--amber:#F5A623;--muted:#6E7191;--subtle:#B0B3C6;
+        }
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+        html{scroll-behavior:smooth;}
+        body{font-family:'DM Sans',-apple-system,sans-serif;color:var(--charcoal);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+        body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,180,216,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,180,216,0.025) 1px,transparent 1px);background-size:72px 72px;pointer-events:none;z-index:0;}
+
+        nav{position:fixed;top:0;width:100%;z-index:200;background:rgba(250,251,255,0.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--card-border);}
+        .nav-inner{max-width:1200px;margin:0 auto;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;}
+        .logo{display:flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;}
+        .logo-mark{width:32px;height:32px;background:linear-gradient(135deg,var(--coral),var(--amber));border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:0.75rem;}
+        .logo-text{font-family:'Fraunces',serif;font-size:1.4rem;color:var(--charcoal);}
+        .logo-text span{color:var(--coral);}
+        .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:50px;font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:600;text-decoration:none;transition:all 0.3s ease;cursor:pointer;border:none;}
+        .btn-primary{background:var(--coral);color:white;box-shadow:0 4px 16px var(--coral-glow);}
+        .btn-primary:hover{background:#E85A44;transform:translateY(-2px);box-shadow:0 8px 24px var(--coral-glow);}
+        .btn-arrow::after{content:'\2192';transition:transform 0.2s;}
+        .btn-arrow:hover::after{transform:translateX(4px);}
+
+        main{min-height:100vh;padding:120px 32px 60px;max-width:900px;margin:0 auto;position:relative;z-index:1;}
+
+        .hero{text-align:center;margin-bottom:60px;animation:fadeUp 0.8s cubic-bezier(0.16,1,0.3,1);}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+        .hero h1{font-family:'Fraunces',serif;font-size:clamp(2rem,4.5vw,2.8rem);font-weight:600;margin-bottom:16px;}
+        .hero p{color:var(--muted);font-size:1.05rem;max-width:500px;margin:0 auto;}
+
+        /* Calculator */
+        .calc-container{background:var(--card);border:1px solid var(--card-border);border-radius:28px;padding:48px 44px;box-shadow:0 8px 40px rgba(0,0,0,0.04);}
+
+        .calc-section{margin-bottom:40px;}
+        .calc-section:last-child{margin-bottom:0;}
+
+        .calc-label{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--cyan);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;}
+        .calc-title{font-size:1.1rem;font-weight:600;margin-bottom:20px;color:var(--charcoal);}
+
+        /* Slider */
+        .slider-group{margin-bottom:28px;}
+        .slider-label{display:flex;justify-content:space-between;margin-bottom:12px;}
+        .slider-label .left{font-size:0.9rem;color:var(--dark);}
+        .slider-label .right{font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:600;color:var(--coral);}
+
+        input[type="range"]{width:100%;height:8px;border-radius:8px;background:linear-gradient(90deg,var(--cyan),var(--purple));outline:none;-webkit-appearance:none;appearance:none;cursor:pointer;}
+        input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:24px;height:24px;border-radius:50%;background:white;border:2px solid var(--coral);cursor:pointer;box-shadow:0 4px 12px rgba(255,107,84,0.3);transition:all 0.2s;}
+        input[type="range"]::-webkit-slider-thumb:active{transform:scale(1.1);}
+        input[type="range"]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:white;border:2px solid var(--coral);cursor:pointer;box-shadow:0 4px 12px rgba(255,107,84,0.3);transition:all 0.2s;}
+
+        /* Toggle */
+        .toggle-group{display:flex;gap:12px;margin-bottom:24px;}
+        .toggle-btn{flex:1;padding:14px 20px;border:2px solid var(--card-border);background:white;border-radius:14px;cursor:pointer;font-size:0.9rem;font-weight:600;transition:all 0.2s;text-align:center;}
+        .toggle-btn.active{border-color:var(--coral);background:rgba(255,107,84,0.06);color:var(--coral);}
+        .toggle-btn:hover{border-color:var(--cyan);}
+
+        /* Results */
+        .results{background:linear-gradient(135deg,var(--purple-light) 0%,var(--cyan-light) 100%);border-radius:20px;padding:32px 28px;margin-top:32px;}
+        .result-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.2);}
+        .result-row:last-child{border-bottom:none;}
+        .result-label{font-size:0.9rem;color:var(--charcoal);font-weight:500;}
+        .result-value{font-family:'JetBrains Mono',monospace;font-size:1.15rem;font-weight:600;color:var(--charcoal);}
+        .result-value.big{font-size:1.8rem;color:var(--coral);}
+
+        /* Breakdown */
+        .breakdown{background:var(--bg-alt);border-radius:16px;padding:28px 24px;margin-top:28px;}
+        .breakdown-title{font-size:0.9rem;font-weight:600;margin-bottom:16px;}
+        .breakdown-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--card-border);font-size:0.85rem;}
+        .breakdown-row:last-child{border-bottom:none;}
+        .breakdown-label{color:var(--muted);}
+        .breakdown-value{text-align:right;font-family:'JetBrains Mono',monospace;font-weight:500;}
+
+        /* CTA */
+        .calc-cta{text-align:center;margin-top:36px;padding-top:32px;border-top:1px solid var(--card-border);}
+        .calc-cta p{color:var(--muted);font-size:0.95rem;margin-bottom:16px;}
+
+        footer{padding:40px 32px;background:var(--bg-dark);margin-top:60px;}
+        .footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+        .footer-logo{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:600;color:white;}
+        .footer-logo span{color:var(--coral);}
+        .footer-links{display:flex;gap:20px;list-style:none;}
+        .footer-links a{color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;transition:color 0.2s;}
+        .footer-links a:hover{color:white;}
+        .footer-copy{font-family:'JetBrains Mono',monospace;color:rgba(255,255,255,0.2);font-size:0.72rem;}
+
+        @media(max-width:600px){
+            main{padding:100px 20px 40px;}
+            .calc-container{padding:32px 22px;}
+            .calc-label+.calc-title{margin-bottom:12px;}
+            .result-row{flex-direction:column;align-items:flex-start;gap:4px;}
+            .result-value{text-align:left;}
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="index-v2.html" class="logo">
+            <div class="logo-mark">RD</div>
+            <div class="logo-text">rd<span>kit</span></div>
+        </a>
+        <a href="eligibility.html" class="btn btn-primary">Check eligibility</a>
+    </div>
+</nav>
+
+<main>
+    <div class="hero">
+        <h1>R&D Tax Offset Calculator</h1>
+        <p>Slide your R&D spend and see your estimated offset in real-time. No guessing, no complexity.</p>
+    </div>
+
+    <div class="calc-container">
+        <div class="calc-section">
+            <div class="calc-label">// Company size</div>
+            <div class="calc-title">What's your aggregated turnover?</div>
+            <div class="toggle-group">
+                <button class="toggle-btn active" data-size="small" onclick="setSize('small')">
+                    Under $20M
+                    <div style="font-size:0.75rem;color:var(--sage);margin-top:2px;">43.5% offset (refundable)</div>
+                </button>
+                <button class="toggle-btn" data-size="large" onclick="setSize('large')">
+                    $20M+
+                    <div style="font-size:0.75rem;color:var(--coral);margin-top:2px;">38.5% offset (non-refundable)</div>
+                </button>
+            </div>
+        </div>
+
+        <div class="calc-section">
+            <div class="calc-label">// R&D Spend</div>
+            <div class="calc-title">How much do you spend on R&D annually?</div>
+            <div class="slider-group">
+                <div class="slider-label">
+                    <span class="left">$50k</span>
+                    <span class="right" id="spendDisplay">$300,000</span>
+                </div>
+                <input type="range" id="spendSlider" min="50000" max="2000000" step="10000" value="300000" oninput="calculate()">
+            </div>
+        </div>
+
+        <div class="results">
+            <div class="result-row">
+                <span class="result-label">Your R&D spend</span>
+                <span class="result-value" id="resultSpend">$300,000</span>
+            </div>
+            <div class="result-row">
+                <span class="result-label">Estimated gross offset</span>
+                <span class="result-value" id="resultGross">$130,500</span>
+            </div>
+            <div class="result-row">
+                <span class="result-label">Less tax benefit already taken</span>
+                <span class="result-value" id="resultTaxBenefit">-$75,000</span>
+            </div>
+            <div class="result-row">
+                <span class="result-label">Net cash benefit</span>
+                <span class="result-value big" id="resultNet">$55,500</span>
+            </div>
+            <div class="result-row">
+                <span class="result-label">RDKit fee (5% + $500)</span>
+                <span class="result-value" id="resultFee" style="color:var(--coral);">$2,775</span>
+            </div>
+            <div class="result-row" style="border-bottom:none;margin-top:8px;padding-top:16px;border-top:2px solid rgba(255,255,255,0.3);">
+                <span class="result-label" style="font-weight:700;">You keep</span>
+                <span class="result-value big" style="font-size:1.6rem;">$52,725</span>
+            </div>
+        </div>
+
+        <div class="breakdown" id="breakdown">
+            <div class="breakdown-title">How we calculate this</div>
+            <div class="breakdown-row">
+                <span class="breakdown-label">Your R&D spend</span>
+                <span class="breakdown-value" id="bkSpend">$300,000</span>
+            </div>
+            <div class="breakdown-row">
+                <span class="breakdown-label">Offset rate (small company)</span>
+                <span class="breakdown-value">43.5%</span>
+            </div>
+            <div class="breakdown-row">
+                <span class="breakdown-label">Gross offset</span>
+                <span class="breakdown-value" id="bkGross">$130,500</span>
+            </div>
+            <div class="breakdown-row" style="border-bottom:2px solid var(--card-border);padding-top:16px;">
+                <span class="breakdown-label">Less your 25% tax rate benefit</span>
+                <span class="breakdown-value" id="bkTax">-$75,000</span>
+            </div>
+            <div class="breakdown-row">
+                <span class="breakdown-label">Net to you</span>
+                <span class="breakdown-value" id="bkNet">$55,500</span>
+            </div>
+            <div class="breakdown-row">
+                <span class="breakdown-label">RDKit fee (5% of offset + $500)</span>
+                <span class="breakdown-value" id="bkFee">$2,775</span>
+            </div>
+            <div class="breakdown-row">
+                <span class="breakdown-label" style="font-weight:600;">Final amount you receive</span>
+                <span class="breakdown-value" id="bkFinal" style="font-weight:600;">$52,725</span>
+            </div>
+        </div>
+
+        <div class="calc-cta">
+            <p>⚠️ <strong>This is an estimate.</strong> Actual amounts depend on eligible expenditure, your specific R&D activities, and AusIndustry's assessment. Let's get a precise figure.</p>
+            <a href="eligibility.html" class="btn btn-primary btn-arrow">Get your actual estimate </a>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <div class="footer-logo">rd<span>kit</span></div>
+        <ul class="footer-links">
+            <li><a href="index-v2.html">Home</a></li>
+            <li><a href="eligibility.html">Quiz</a></li>
+            <li><a href="rdti-program.html">R&DTI Guide</a></li>
+        </ul>
+        <div class="footer-copy">&copy; 2026 RDKit</div>
+    </div>
+</footer>
+
+<script>
+let companySize = 'small';
+
+function setSize(size) {
+    companySize = size;
+    document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector(`[data-size="${size}"]`).classList.add('active');
+    calculate();
+}
+
+function calculate() {
+    const spend = parseInt(document.getElementById('spendSlider').value);
+    const isSmall = companySize === 'small';
+    const offsetRate = isSmall ? 0.435 : 0.385;
+    const taxRate = isSmall ? 0.25 : 0.30;
+    const netRate = offsetRate - taxRate;
+
+    const gross = Math.round(spend * offsetRate);
+    const taxBenefit = Math.round(spend * taxRate);
+    const net = gross - taxBenefit;
+    const fee = Math.max(2500, Math.round(net * 0.05) + 500);
+    const keep = net - fee;
+
+    // Update display
+    document.getElementById('spendDisplay').textContent = '$' + spend.toLocaleString();
+    document.getElementById('resultSpend').textContent = '$' + spend.toLocaleString();
+    document.getElementById('resultGross').textContent = '$' + gross.toLocaleString();
+    document.getElementById('resultTaxBenefit').textContent = '-$' + taxBenefit.toLocaleString();
+    document.getElementById('resultNet').textContent = '$' + net.toLocaleString();
+    document.getElementById('resultFee').textContent = '$' + fee.toLocaleString();
+
+    // Breakdown
+    document.getElementById('bkSpend').textContent = '$' + spend.toLocaleString();
+    document.getElementById('bkGross').textContent = '$' + gross.toLocaleString();
+    document.getElementById('bkTax').textContent = '-$' + taxBenefit.toLocaleString();
+    document.getElementById('bkNet').textContent = '$' + net.toLocaleString();
+    document.getElementById('bkFee').textContent = '$' + fee.toLocaleString();
+    document.getElementById('bkFinal').textContent = '$' + keep.toLocaleString();
+
+    // Update breakdown title
+    if (!isSmall) {
+        document.querySelector('.breakdown-title').textContent = 'How we calculate this (Large company)';
+    } else {
+        document.querySelector('.breakdown-title').textContent = 'How we calculate this (Small company)';
+    }
+}
+
+calculate();
+</script>
+
+</body>
+</html>
