@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
+import Nav from '../components/Nav'
+import Footer from '../components/Footer'
 
-const fmt = n => '$' + n.toLocaleString()
+const fmt = n => '$' + Math.round(n).toLocaleString()
 
 export default function Calculator() {
   const [spend, setSpend] = useState(300000)
@@ -11,7 +13,6 @@ export default function Calculator() {
   const isSmall = size === 'small'
   const offsetRate = isSmall ? 0.435 : 0.385
   const taxRate = isSmall ? 0.25 : 0.30
-
   const gross = Math.round(spend * offsetRate)
   const taxBenefit = Math.round(spend * taxRate)
   const net = gross - taxBenefit
@@ -22,146 +23,94 @@ export default function Calculator() {
     <>
       <Head>
         <title>R&D Tax Offset Calculator — RDKit</title>
-        <meta name="description" content="See exactly how much Australian R&D tax offset you could claim. Interactive calculator for instant estimates." />
+        <meta name="description" content="Instantly estimate your Australian R&D tax offset. Real-time calculator — no sign-up needed." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
-      <nav>
-        <div className="nav-inner">
-          <Link href="/" className="logo">
-            <div className="logo-mark">RD</div>
-            <div className="logo-text">rd<span>kit</span></div>
-          </Link>
-          <Link href="/eligibility" className="btn btn-primary">Check eligibility</Link>
-        </div>
-      </nav>
+      <Nav />
 
-      <main className="calc-main">
+      <div className="calc-page">
         <div className="calc-hero">
+          <div className="tag tag-cyan" style={{ marginBottom: 16 }}>Estimate your offset</div>
           <h1>R&D Tax Offset Calculator</h1>
-          <p>Slide your R&D spend and see your estimated offset in real-time. No guessing, no complexity.</p>
+          <p>Adjust your R&D spend and company size for an instant estimate. Detailed breakdown included.</p>
         </div>
 
-        <div className="calc-container">
+        <div className="calc-card">
           <div className="calc-section">
-            <div className="calc-label">// Company size</div>
-            <div className="calc-title">What&rsquo;s your aggregated turnover?</div>
+            <div className="calc-tag">// Company size</div>
+            <div className="calc-title">What&rsquo;s your aggregated annual turnover?</div>
             <div className="toggle-group">
-              <button
-                className={`toggle-btn${size === 'small' ? ' active' : ''}`}
-                onClick={() => setSize('small')}
-              >
+              <button className={`toggle-btn${size === 'small' ? ' active' : ''}`} onClick={() => setSize('small')}>
                 Under $20M
-                <div style={{ fontSize: '0.75rem', color: 'var(--sage)', marginTop: '2px' }}>43.5% offset (refundable)</div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--sage)', marginTop: 3 }}>43.5% offset — refundable</div>
               </button>
-              <button
-                className={`toggle-btn${size === 'large' ? ' active' : ''}`}
-                onClick={() => setSize('large')}
-              >
+              <button className={`toggle-btn${size === 'large' ? ' active' : ''}`} onClick={() => setSize('large')}>
                 $20M+
-                <div style={{ fontSize: '0.75rem', color: 'var(--coral)', marginTop: '2px' }}>38.5% offset (non-refundable)</div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--muted)', marginTop: 3 }}>38.5% offset — non-refundable</div>
               </button>
             </div>
           </div>
 
           <div className="calc-section">
-            <div className="calc-label">// R&D Spend</div>
-            <div className="calc-title">How much do you spend on R&D annually?</div>
-            <div className="slider-group">
-              <div className="slider-label">
-                <span className="left">$50k</span>
-                <span className="right">{fmt(spend)}</span>
-              </div>
-              <input
-                type="range"
-                min="50000"
-                max="2000000"
-                step="10000"
-                value={spend}
-                onChange={e => setSpend(parseInt(e.target.value))}
-              />
+            <div className="calc-tag">// Annual R&D spend</div>
+            <div className="calc-title">How much do you spend on eligible R&D annually?</div>
+            <div className="slider-row">
+              <span className="left">$50k</span>
+              <span className="right">{fmt(spend)}</span>
+            </div>
+            <input
+              type="range" min="50000" max="2000000" step="10000"
+              value={spend} onChange={e => setSpend(parseInt(e.target.value))}
+            />
+          </div>
+
+          <div className="results-box">
+            <div className="result-row">
+              <span className="rl">Your R&D spend</span>
+              <span className="rv">{fmt(spend)}</span>
+            </div>
+            <div className="result-row">
+              <span className="rl">Gross offset ({isSmall ? '43.5%' : '38.5%'})</span>
+              <span className="rv">{fmt(gross)}</span>
+            </div>
+            <div className="result-row">
+              <span className="rl">Less tax deduction benefit ({isSmall ? '25%' : '30%'})</span>
+              <span className="rv">-{fmt(taxBenefit)}</span>
+            </div>
+            <div className="result-row">
+              <span className="rl">Net cash benefit</span>
+              <span className="rv big">{fmt(net)}</span>
+            </div>
+            <div className="result-row">
+              <span className="rl" style={{ color: 'var(--muted)' }}>RDKit fee (5% + $500)</span>
+              <span className="rv" style={{ fontSize: '0.95rem', color: 'var(--coral)' }}>{fmt(fee)}</span>
+            </div>
+            <div className="result-row result-divider">
+              <span className="rl" style={{ fontWeight: 700 }}>You keep</span>
+              <span className="rv big" style={{ fontSize: '1.4rem' }}>{fmt(keep)}</span>
             </div>
           </div>
 
-          <div className="results">
-            <div className="result-row">
-              <span className="result-label">Your R&D spend</span>
-              <span className="result-value">{fmt(spend)}</span>
-            </div>
-            <div className="result-row">
-              <span className="result-label">Estimated gross offset</span>
-              <span className="result-value">{fmt(gross)}</span>
-            </div>
-            <div className="result-row">
-              <span className="result-label">Less tax benefit already taken</span>
-              <span className="result-value">-{fmt(taxBenefit)}</span>
-            </div>
-            <div className="result-row">
-              <span className="result-label">Net cash benefit</span>
-              <span className="result-value big">{fmt(net)}</span>
-            </div>
-            <div className="result-row">
-              <span className="result-label">RDKit fee (5% + $500)</span>
-              <span className="result-value" style={{ color: 'var(--coral)' }}>{fmt(fee)}</span>
-            </div>
-            <div className="result-row" style={{ borderBottom: 'none', marginTop: '8px', paddingTop: '16px', borderTop: '2px solid rgba(255,255,255,0.3)' }}>
-              <span className="result-label" style={{ fontWeight: 700 }}>You keep</span>
-              <span className="result-value big" style={{ fontSize: '1.6rem' }}>{fmt(keep)}</span>
-            </div>
+          <div className="breakdown-box">
+            <div className="breakdown-title">How we calculate this — {isSmall ? 'small' : 'large'} company</div>
+            <div className="br-row"><span className="br-label">R&D spend</span><span className="br-val">{fmt(spend)}</span></div>
+            <div className="br-row"><span className="br-label">Offset rate</span><span className="br-val">{isSmall ? '43.5%' : '38.5%'}</span></div>
+            <div className="br-row"><span className="br-label">Gross offset</span><span className="br-val">{fmt(gross)}</span></div>
+            <div className="br-row"><span className="br-label">Less {isSmall ? '25%' : '30%'} tax rate benefit (you&rsquo;d have deducted this anyway)</span><span className="br-val">-{fmt(taxBenefit)}</span></div>
+            <div className="br-row"><span className="br-label">Net cash to you</span><span className="br-val">{fmt(net)}</span></div>
+            <div className="br-row"><span className="br-label">RDKit fee (5% of net + $500)</span><span className="br-val">{fmt(fee)}</span></div>
+            <div className="br-row" style={{ fontWeight: 600 }}><span className="br-label" style={{ fontWeight: 600 }}>You receive</span><span className="br-val">{fmt(keep)}</span></div>
           </div>
 
-          <div className="breakdown">
-            <div className="breakdown-title">
-              How we calculate this ({isSmall ? 'Small company' : 'Large company'})
-            </div>
-            <div className="breakdown-row">
-              <span className="breakdown-label">Your R&D spend</span>
-              <span className="breakdown-value">{fmt(spend)}</span>
-            </div>
-            <div className="breakdown-row">
-              <span className="breakdown-label">Offset rate ({isSmall ? 'small' : 'large'} company)</span>
-              <span className="breakdown-value">{isSmall ? '43.5%' : '38.5%'}</span>
-            </div>
-            <div className="breakdown-row">
-              <span className="breakdown-label">Gross offset</span>
-              <span className="breakdown-value">{fmt(gross)}</span>
-            </div>
-            <div className="breakdown-row" style={{ borderBottom: '2px solid var(--card-border)', paddingTop: '16px' }}>
-              <span className="breakdown-label">Less your {isSmall ? '25%' : '30%'} tax rate benefit</span>
-              <span className="breakdown-value">-{fmt(taxBenefit)}</span>
-            </div>
-            <div className="breakdown-row">
-              <span className="breakdown-label">Net to you</span>
-              <span className="breakdown-value">{fmt(net)}</span>
-            </div>
-            <div className="breakdown-row">
-              <span className="breakdown-label">RDKit fee (5% of offset + $500)</span>
-              <span className="breakdown-value">{fmt(fee)}</span>
-            </div>
-            <div className="breakdown-row">
-              <span className="breakdown-label" style={{ fontWeight: 600 }}>Final amount you receive</span>
-              <span className="breakdown-value" style={{ fontWeight: 600 }}>{fmt(keep)}</span>
-            </div>
-          </div>
-
-          <div className="calc-cta">
-            <p>⚠️ <strong>This is an estimate.</strong> Actual amounts depend on eligible expenditure, your specific R&D activities, and AusIndustry&rsquo;s assessment. Let&rsquo;s get a precise figure.</p>
-            <Link href="/eligibility" className="btn btn-primary btn-arrow">Get your actual estimate </Link>
+          <div className="calc-disclaimer">
+            <p>⚠️ <strong>This is an estimate.</strong> Actual amounts depend on eligible expenditure verified by AusIndustry, your specific R&D activities, and your tax position. Let&rsquo;s get a precise figure.</p>
+            <Link href="/eligibility" className="btn btn-primary btn-arrow">Get your actual estimate — free</Link>
           </div>
         </div>
-      </main>
+      </div>
 
-      <footer style={{ marginTop: '60px' }}>
-        <div className="footer-inner">
-          <div className="footer-logo">rd<span>kit</span></div>
-          <ul className="footer-links">
-            <li><Link href="/">Home</Link></li>
-            <li><Link href="/eligibility">Quiz</Link></li>
-            <li><Link href="/rdti-program">R&DTI Guide</Link></li>
-          </ul>
-          <div className="footer-copy">&copy; 2026 RDKit</div>
-        </div>
-      </footer>
+      <Footer />
     </>
   )
 }

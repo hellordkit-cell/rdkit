@@ -1,6 +1,8 @@
-import { useEffect } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
+import { useEffect } from 'react'
+import Nav from '../components/Nav'
+import Footer from '../components/Footer'
 
 export default function RdtiProgram() {
   useEffect(() => {
@@ -8,259 +10,236 @@ export default function RdtiProgram() {
       entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') }),
       { threshold: 0.08 }
     )
-    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el))
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el))
     return () => obs.disconnect()
   }, [])
 
   return (
     <>
       <Head>
-        <title>The Australian R&D Tax Incentive Explained — RDKit</title>
-        <meta name="description" content="A plain-English guide to the Australian R&D Tax Incentive: who qualifies, how much you can get back, real examples, and common mistakes to avoid." />
+        <title>The R&D Tax Incentive Explained — RDKit</title>
+        <meta name="description" content="Plain-English guide to the Australian R&D Tax Incentive: who qualifies, how much you get back, real case studies, and how RDKit helps." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
-      <nav>
-        <div className="nav-inner">
-          <Link href="/" className="logo">rd<span>kit.</span></Link>
-          <ul className="nav-links">
-            <li><Link href="/">Home</Link></li>
-            <li><Link href="/eligibility">Eligibility Quiz</Link></li>
-            <li><Link href="/#pricing">Pricing</Link></li>
-            <li><Link href="/#about">About</Link></li>
-            <li><Link href="/eligibility" className="btn btn-primary">Check eligibility</Link></li>
-          </ul>
-        </div>
-      </nav>
+      <Nav />
 
-      <div className="page-hero">
-        <div className="section-label">// the complete guide</div>
-        <h1>The Australian R&D Tax Incentive, explained in plain English</h1>
-        <p>Everything you need to know about the R&DTI program: who qualifies, how much you get back, real examples, and the mistakes that cost companies thousands.</p>
+      <div className="program-hero fade-up">
+        <div className="tag tag-cyan" style={{ marginBottom: 20 }}>R&DTI Program</div>
+        <h1>The Australian R&D Tax Incentive, explained plainly</h1>
+        <p>Everything you need to understand the program — who qualifies, what you can claim, how the offset works, and the mistakes that cost companies thousands.</p>
       </div>
 
-      <section className="content-section fade-in">
-        <div className="section-label">// what is it</div>
-        <h2>The R&DTI in 60 seconds</h2>
-        <p>The Research and Development Tax Incentive (R&DTI) is an Australian Government program that gives companies a tax offset for eligible R&D activities. It&rsquo;s administered jointly by AusIndustry (who assess the R&D activities) and the ATO (who process the tax offset).</p>
-        <p>In simple terms: if your company is doing genuinely innovative work where the outcome isn&rsquo;t certain, the government will give you back a percentage of what you spent on that work. For most small-to-medium companies, this comes as a direct cash refund.</p>
-        <p>The program has been running since 2011 and supports thousands of Australian companies every year across software, manufacturing, biotech, agriculture, construction, and many other industries. It&rsquo;s not a grant you apply for — it&rsquo;s a tax incentive that&rsquo;s available to any eligible company.</p>
+      {/* What is it */}
+      <div className="program-section fade-up">
+        <div className="section-tag">// The 60-second version</div>
+        <h2>What is the R&DTI?</h2>
+        <p>The Research and Development Tax Incentive is an Australian Government program that gives companies a cash offset for eligible R&D activities. If you&rsquo;re doing genuinely innovative work — where the outcome isn&rsquo;t certain in advance — the government gives you back a percentage of what you spent on that work.</p>
+        <p>It&rsquo;s not a grant. It&rsquo;s not competitive. It&rsquo;s a tax incentive available to any eligible company, and unlike grants, there&rsquo;s no pool of money that runs out. If you qualify, you claim it.</p>
+        <p>The program is jointly administered by AusIndustry (who assess the R&D activities) and the ATO (who process the offset as part of your tax return).</p>
 
-        <div className="key-numbers">
-          <div className="key-num">
+        <div className="key-stats">
+          <div className="key-stat">
             <div className="big">43.5%</div>
-            <div className="desc">Refundable offset rate for companies under $20M turnover</div>
+            <div className="desc">Refundable offset for companies under $20M turnover — even if you&rsquo;re loss-making</div>
           </div>
-          <div className="key-num">
+          <div className="key-stat">
             <div className="big">$4B+</div>
-            <div className="desc">Claimed by Australian companies each year through the R&DTI</div>
+            <div className="desc">Claimed by Australian companies annually through the R&DTI program</div>
           </div>
-          <div className="key-num">
+          <div className="key-stat">
             <div className="big">12,000+</div>
-            <div className="desc">Companies register R&D activities annually</div>
+            <div className="desc">Companies register R&D activities each year — with many more eligible but not claiming</div>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section className="content-section alt-bg fade-in">
-        <div className="inner">
-          <div className="section-label">// how much can you get</div>
-          <h2>The offset rates explained</h2>
-          <p>How much you get back depends on your company&rsquo;s aggregated turnover. There are two tiers.</p>
+      {/* How much */}
+      <div className="program-section alt fade-up">
+        <div className="program-inner">
+          <div className="section-tag">// Offset rates</div>
+          <h2>How much can you actually get back?</h2>
+          <p>The amount depends on your aggregated turnover. There are two tiers.</p>
 
-          <div className="elig-grid">
-            <div className="elig-card yes">
+          <div className="qual-grid">
+            <div className="qual-card yes">
               <h4><span style={{ color: 'var(--sage)' }}>●</span> Under $20M turnover</h4>
-              <p>You get a <strong>43.5% refundable tax offset</strong>. Since you&rsquo;d normally deduct R&D at your 25% corporate tax rate, the net cash benefit is <strong>18.5 cents back for every dollar</strong> you spend on eligible R&D. And it&rsquo;s refundable — even if you&rsquo;re not making a profit yet, you get cash back.</p>
+              <p><strong>43.5% refundable offset.</strong> Since you&rsquo;d normally deduct R&D at your 25% tax rate, the net benefit is <strong>18.5 cents for every dollar spent on eligible R&D.</strong> And it&rsquo;s refundable — you get it as cash even in a loss year.</p>
             </div>
-            <div className="elig-card yes">
+            <div className="qual-card yes" style={{ borderLeftColor: 'var(--amber)' }}>
               <h4><span style={{ color: 'var(--amber)' }}>●</span> $20M+ turnover</h4>
-              <p>You get a <strong>38.5% non-refundable tax offset</strong>. The net benefit is <strong>8.5 cents per dollar</strong> (above the 30% corporate tax rate). It&rsquo;s non-refundable, meaning it reduces your tax liability — and any unused offset carries forward.</p>
+              <p><strong>38.5% non-refundable offset.</strong> Net benefit of <strong>8.5 cents per dollar</strong> above the 30% corporate rate. Reduces your tax liability; any excess carries forward.</p>
             </div>
           </div>
 
-          <h3>Quick example</h3>
-          <p>A SaaS startup with $400,000 in eligible R&D expenditure and under $20M turnover would get back roughly <strong>$74,000 as a direct cash refund</strong> ($400k × 18.5%). Their RDKit fee at 5% would be about $3,700 + the $500 upfront — still saving them $69,800+ they didn&rsquo;t have before.</p>
+          <div className="rdkit-help" style={{ marginTop: 28 }}>
+            <h3>📐 Quick example</h3>
+            <p style={{ fontSize: '0.93rem', color: 'var(--dark)', lineHeight: 1.75, marginBottom: 0 }}>
+              A SaaS startup with $400,000 in eligible R&D spend and under $20M turnover gets back roughly <strong>$74,000 cash</strong> ($400k × 18.5%). The RDKit fee at 5% is $3,700 + $500 upfront — a net benefit of over $69,800 that didn&rsquo;t exist before the claim.
+            </p>
+          </div>
         </div>
-      </section>
+      </div>
 
-      <section className="content-section fade-in">
-        <div className="section-label">// who qualifies</div>
-        <h2>Eligibility: what AusIndustry is looking for</h2>
-        <p>The R&DTI has specific eligibility criteria. Here&rsquo;s the practical breakdown.</p>
+      {/* Who qualifies */}
+      <div className="program-section fade-up">
+        <div className="section-tag">// Eligibility</div>
+        <h2>What actually qualifies as R&D?</h2>
+        <p>This is where most confusion lives. AusIndustry requires <strong>core R&D activities</strong> to be genuinely experimental — you&rsquo;re generating new knowledge, and the outcome can&rsquo;t be known in advance, even by a competent professional in the field. The test is <strong>genuine technical uncertainty</strong>.</p>
+        <p>Supporting activities that directly enable your core R&D — building test environments, developing prototypes, collecting experimental data — can also be included. These often make up a significant portion of a claim.</p>
 
-        <h3>The basics</h3>
-        <p>Your company must be incorporated in Australia (or a foreign-owned company with an Australian permanent establishment), have an ABN, and actually incur R&D expenditure. You register your R&D activities with AusIndustry and then claim the offset through your income tax return.</p>
-
-        <h3>The real test: what counts as &ldquo;R&D&rdquo;</h3>
-        <p>This is where most confusion lives. AusIndustry requires <strong>core R&D activities</strong> to be experimental — meaning you&rsquo;re generating new knowledge and the outcome can&rsquo;t be known in advance, even by a competent professional in the field. The key ingredient is <strong>genuine technical uncertainty</strong>.</p>
-
-        <div className="elig-grid" style={{ marginTop: '24px' }}>
-          <div className="elig-card yes">
+        <div className="qual-grid" style={{ marginTop: 24 }}>
+          <div className="qual-card yes">
             <h4>✓ Likely qualifies</h4>
-            <p>Building a new ML model where you don&rsquo;t know if the approach will achieve the required accuracy. Developing a new manufacturing process that hasn&rsquo;t been done at this scale. Creating a novel compound with uncertain efficacy. Engineering a product with untested materials.</p>
+            <p>ML model where you don&rsquo;t know if the approach will reach target accuracy. New manufacturing process at untested scale. Novel compound with uncertain efficacy. IoT firmware for untested hardware combinations. Any technical problem where the answer isn&rsquo;t obvious to an expert.</p>
           </div>
-          <div className="elig-card no">
+          <div className="qual-card no">
             <h4>✗ Likely doesn&rsquo;t qualify</h4>
-            <p>Implementing an off-the-shelf CRM. Routine software development using established frameworks. Copy-pasting someone else&rsquo;s proven manufacturing process. Market research, business planning, or quality control (these are explicitly excluded).</p>
+            <p>Implementing an established CRM. Routine software development with known methods. Copy-pasting a proven manufacturing process. Market research, business planning, or quality control. Anything where a competent professional would know how to do it from the start.</p>
           </div>
         </div>
 
-        <h3>Supporting activities count too</h3>
-        <p>Activities that directly support your core R&D — like building test environments, developing prototypes, collecting data for experiments — can also be included. These &ldquo;supporting R&D activities&rdquo; often make up a significant portion of a claim.</p>
-      </section>
+        <div className="rdkit-help">
+          <h3 style={{ marginTop: 0 }}>💡 How RDKit helps with this</h3>
+          <div className="help-list">
+            <div className="help-item">We assess your activities against AusIndustry&rsquo;s criteria before we start — so you know where you stand.</div>
+            <div className="help-item">We write project descriptions that clearly articulate the technical uncertainty, the hypothesis, and the experimental method — the three things reviewers are looking for.</div>
+            <div className="help-item">We identify supporting activities you might not have thought to claim — often adding 20–40% more to the eligible spend.</div>
+          </div>
+        </div>
+      </div>
 
-      <section className="content-section dark-bg fade-in">
-        <div className="inner">
-          <div className="section-label" style={{ color: 'var(--coral)' }}>// real-world examples</div>
-          <h2 style={{ color: 'white' }}>How Australian companies are using the R&DTI</h2>
-          <p>These examples represent typical R&DTI claims across different industries. Names have been changed, but the numbers and scenarios reflect real claim profiles.</p>
+      {/* Real examples */}
+      <div className="program-section dark fade-up">
+        <div className="program-inner">
+          <div className="section-tag" style={{ color: 'var(--coral)' }}>// Case studies</div>
+          <h2 style={{ color: 'white' }}>How Australian companies have used the R&DTI</h2>
+          <p>These represent typical claim profiles. Numbers and scenarios reflect real R&DTI claims; names are illustrative.</p>
 
           <div className="cases-grid">
             <div className="case-card">
               <div className="case-tag">Software / AI</div>
               <h4>AI-powered logistics platform</h4>
-              <div className="case-desc">A Melbourne SaaS startup building route-optimisation algorithms using machine learning. The technical uncertainty: whether their novel approach could outperform existing heuristic methods at scale with real-time traffic data.</div>
+              <p className="case-desc">Melbourne SaaS startup building route-optimisation algorithms using ML. Technical uncertainty: whether the novel approach could beat existing heuristic methods with real-time traffic data at scale.</p>
               <div className="case-stats">
-                <div className="case-stat"><div className="slabel">R&D Spend</div><div className="sval">$320k</div></div>
-                <div className="case-stat"><div className="slabel">Offset</div><div className="sval highlight">$59,200</div></div>
-                <div className="case-stat"><div className="slabel">Activities</div><div className="sval">3</div></div>
-                <div className="case-stat"><div className="slabel">Turnover</div><div className="sval">&lt;$20M</div></div>
+                <div className="cs"><div className="cs-label">R&D Spend</div><div className="cs-val">$320k</div></div>
+                <div className="cs"><div className="cs-label">Cash offset</div><div className="cs-val hi">$59,200</div></div>
+                <div className="cs"><div className="cs-label">Activities</div><div className="cs-val">3</div></div>
+                <div className="cs"><div className="cs-label">Turnover</div><div className="cs-val">&lt;$20M</div></div>
               </div>
             </div>
-
             <div className="case-card">
               <div className="case-tag">Biotech / Medtech</div>
               <h4>Point-of-care diagnostic device</h4>
-              <div className="case-desc">A Sydney biotech developing a rapid diagnostic tool for infectious diseases. Multiple unknowns around biosensor sensitivity, sample preparation methods, and achieving consistent results outside lab conditions.</div>
+              <p className="case-desc">Sydney biotech developing a rapid diagnostic tool. Multiple unknowns: biosensor sensitivity, sample preparation, achieving consistent results outside controlled lab conditions.</p>
               <div className="case-stats">
-                <div className="case-stat"><div className="slabel">R&D Spend</div><div className="sval">$680k</div></div>
-                <div className="case-stat"><div className="slabel">Offset</div><div className="sval highlight">$125,800</div></div>
-                <div className="case-stat"><div className="slabel">Activities</div><div className="sval">5</div></div>
-                <div className="case-stat"><div className="slabel">Turnover</div><div className="sval">&lt;$20M</div></div>
+                <div className="cs"><div className="cs-label">R&D Spend</div><div className="cs-val">$680k</div></div>
+                <div className="cs"><div className="cs-label">Cash offset</div><div className="cs-val hi">$125,800</div></div>
+                <div className="cs"><div className="cs-label">Activities</div><div className="cs-val">5</div></div>
+                <div className="cs"><div className="cs-label">Turnover</div><div className="cs-val">&lt;$20M</div></div>
               </div>
             </div>
-
             <div className="case-card">
               <div className="case-tag">Manufacturing</div>
               <h4>Sustainable packaging materials</h4>
-              <div className="case-desc">A Brisbane manufacturer experimenting with biodegradable polymer composites to replace plastic packaging. The uncertainty centred on whether the new materials could meet food-safety and shelf-life requirements.</div>
+              <p className="case-desc">Brisbane manufacturer experimenting with biodegradable polymer composites. Uncertainty: whether new materials could meet food-safety and shelf-life requirements at commercial scale.</p>
               <div className="case-stats">
-                <div className="case-stat"><div className="slabel">R&D Spend</div><div className="sval">$450k</div></div>
-                <div className="case-stat"><div className="slabel">Offset</div><div className="sval highlight">$83,250</div></div>
-                <div className="case-stat"><div className="slabel">Activities</div><div className="sval">4</div></div>
-                <div className="case-stat"><div className="slabel">Turnover</div><div className="sval">&lt;$20M</div></div>
+                <div className="cs"><div className="cs-label">R&D Spend</div><div className="cs-val">$450k</div></div>
+                <div className="cs"><div className="cs-label">Cash offset</div><div className="cs-val hi">$83,250</div></div>
+                <div className="cs"><div className="cs-label">Activities</div><div className="cs-val">4</div></div>
+                <div className="cs"><div className="cs-label">Turnover</div><div className="cs-val">&lt;$20M</div></div>
               </div>
             </div>
-
             <div className="case-card">
               <div className="case-tag">AgTech</div>
-              <h4>Precision irrigation sensor network</h4>
-              <div className="case-desc">A regional AgTech company developing IoT soil-moisture sensors with custom firmware. Technical uncertainty in achieving reliable wireless communication across large paddocks and calibrating sensors for diverse soil types.</div>
+              <h4>Precision irrigation network</h4>
+              <p className="case-desc">Regional AgTech company building IoT soil-moisture sensors with custom firmware. Uncertainty: reliable wireless across large paddocks, calibration for diverse soil types.</p>
               <div className="case-stats">
-                <div className="case-stat"><div className="slabel">R&D Spend</div><div className="sval">$240k</div></div>
-                <div className="case-stat"><div className="slabel">Offset</div><div className="sval highlight">$44,400</div></div>
-                <div className="case-stat"><div className="slabel">Activities</div><div className="sval">2</div></div>
-                <div className="case-stat"><div className="slabel">Turnover</div><div className="sval">&lt;$20M</div></div>
+                <div className="cs"><div className="cs-label">R&D Spend</div><div className="cs-val">$240k</div></div>
+                <div className="cs"><div className="cs-label">Cash offset</div><div className="cs-val hi">$44,400</div></div>
+                <div className="cs"><div className="cs-label">Activities</div><div className="cs-val">2</div></div>
+                <div className="cs"><div className="cs-label">Turnover</div><div className="cs-val">&lt;$20M</div></div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section className="content-section fade-in">
-        <div className="section-label">// watch out</div>
-        <h2>The 5 mistakes that cost companies thousands</h2>
-        <p>After 5+ years in R&DTI consulting, these are the errors Kay sees most often — and they&rsquo;re all preventable.</p>
-
+      {/* Common mistakes */}
+      <div className="program-section fade-up">
+        <div className="section-tag">// What goes wrong</div>
+        <h2>5 mistakes that cost companies thousands</h2>
+        <p style={{ color: 'var(--muted)', fontSize: '0.95rem', marginBottom: 28 }}>After 5+ years in R&DTI consulting, these are the errors Kay sees most often — and every one of them is preventable.</p>
         <div className="mistake-list">
-          <div className="mistake">
-            <div className="mistake-icon">1</div>
-            <div>
-              <h4>Not claiming at all because &ldquo;we&rsquo;re not doing science&rdquo;</h4>
-              <p>The R&DTI covers software development, engineering, manufacturing innovation, and much more. If there&rsquo;s technical uncertainty in what you&rsquo;re building, you may qualify — even without a single lab coat.</p>
+          {[
+            { title: 'Not claiming because "we\'re not doing science"', desc: 'The R&DTI covers software, engineering, manufacturing innovation, and more. If there\'s technical uncertainty, you may qualify — no lab coat needed.' },
+            { title: 'Weak project descriptions that don\'t demonstrate uncertainty', desc: 'AusIndustry needs to see a clear hypothesis, the technical uncertainty, and the experimental method. "We built a new app" gets rejected. This is where RDKit\'s expertise matters most.' },
+            { title: 'Overclaiming or underclaiming eligible expenditure', desc: 'Some companies include ineligible costs (marketing, admin). Others miss legitimate items: cloud hosting for R&D, contractor costs, depreciation on R&D equipment. Both mistakes are expensive.' },
+            { title: 'Not keeping contemporaneous records', desc: 'If AusIndustry audits your claim, they want to see evidence the R&D happened — git commits, experiment logs, meeting notes, test results. Records created after the fact raise red flags.' },
+            { title: 'Missing the registration deadline', desc: 'You must register with AusIndustry within 10 months of your financial year end. For June 30 FY companies, that\'s April 30 the following year. No exceptions, no extensions.' },
+          ].map((m, i) => (
+            <div className="mistake" key={i}>
+              <div className="mistake-num">{i + 1}</div>
+              <div>
+                <h4>{m.title}</h4>
+                <p>{m.desc}</p>
+              </div>
             </div>
-          </div>
-          <div className="mistake">
-            <div className="mistake-icon">2</div>
-            <div>
-              <h4>Weak project descriptions that don&rsquo;t demonstrate uncertainty</h4>
-              <p>AusIndustry reviewers need to see a clear hypothesis, the technical uncertainty, and the experimental method. Vague descriptions like &ldquo;we built a new app&rdquo; will get flagged or rejected. This is where proper PD writing matters most.</p>
-            </div>
-          </div>
-          <div className="mistake">
-            <div className="mistake-icon">3</div>
-            <div>
-              <h4>Overclaiming (or underclaiming) eligible expenditure</h4>
-              <p>Some companies include costs that aren&rsquo;t eligible (general admin, marketing). Others miss claimable items like cloud hosting used for R&D, contractor costs, or depreciation on R&D equipment. Both mistakes cost money.</p>
-            </div>
-          </div>
-          <div className="mistake">
-            <div className="mistake-icon">4</div>
-            <div>
-              <h4>Not keeping contemporaneous records</h4>
-              <p>If AusIndustry audits your claim, they want to see evidence that the R&D work actually happened — experiment logs, git commits, meeting notes, test results. Creating records after the fact is a red flag.</p>
-            </div>
-          </div>
-          <div className="mistake">
-            <div className="mistake-icon">5</div>
-            <div>
-              <h4>Missing the registration deadline</h4>
-              <p>You must register your R&D activities with AusIndustry within 10 months of the end of your income year. For most companies (June 30 FY), that&rsquo;s April 30 the following year. Miss it and you can&rsquo;t claim — no extensions, no exceptions.</p>
-            </div>
+          ))}
+        </div>
+
+        <div className="rdkit-help" style={{ marginTop: 40 }}>
+          <h3 style={{ marginTop: 0 }}>🛡️ How RDKit prevents all of these</h3>
+          <div className="help-list">
+            <div className="help-item">We assess eligibility upfront so you know before you commit any money.</div>
+            <div className="help-item">We write project descriptions that meet AusIndustry&rsquo;s technical requirements — not templated, not vague.</div>
+            <div className="help-item">We map your expenditure methodically to identify every eligible category — including ones you&rsquo;d miss.</div>
+            <div className="help-item">We advise on record-keeping best practice so you&rsquo;re audit-ready.</div>
+            <div className="help-item">We manage your registration deadline and coordinate with your accountant so nothing slips.</div>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section className="content-section alt-bg fade-in">
-        <div className="inner">
-          <div className="section-label">// key dates</div>
-          <h2>The R&DTI timeline for FY 2025-26</h2>
-          <p>If your financial year ends June 30, 2026, here are the dates that matter.</p>
-          <div className="elig-grid">
-            <div className="elig-card yes">
+      {/* Key dates */}
+      <div className="program-section alt fade-up">
+        <div className="program-inner">
+          <div className="section-tag">// Key dates</div>
+          <h2>R&DTI timeline for FY2025-26</h2>
+          <p style={{ color: 'var(--muted)', marginBottom: 28 }}>If your financial year ends June 30, 2026, these are the dates that matter.</p>
+          <div className="qual-grid">
+            <div className="qual-card yes">
               <h4>📅 July 2025 – June 2026</h4>
-              <p>Your R&D activities take place during this financial year. Keep records as you go.</p>
+              <p>Your R&D activities occur during this financial year. Keep records as you go — don&rsquo;t wait until the end of the year to document what you did.</p>
             </div>
-            <div className="elig-card yes">
+            <div className="qual-card yes">
               <h4>📅 By April 30, 2027</h4>
-              <p>Deadline to register your R&D activities with AusIndustry (10 months after FY end). This is non-negotiable.</p>
+              <p>Deadline to register your R&D activities with AusIndustry. This is 10 months after FY end and is completely non-negotiable.</p>
             </div>
-            <div className="elig-card yes">
+            <div className="qual-card yes">
               <h4>📅 With your tax return</h4>
-              <p>Your accountant lodges the R&D Tax Offset Schedule with your income tax return.</p>
+              <p>Your accountant includes the R&D Tax Offset Schedule with your income tax return lodgement.</p>
             </div>
-            <div className="elig-card yes">
+            <div className="qual-card yes">
               <h4>📅 After ATO processing</h4>
-              <p>The offset hits your account. For refundable offsets (under $20M), this is a direct cash payment.</p>
+              <p>The offset hits your account. For refundable offsets (under $20M), this is a direct cash payment — even if you&rsquo;re in a loss position.</p>
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section className="content-section fade-in">
-        <div className="cta-banner">
-          <div className="section-label">// ready to find out?</div>
-          <h2>See if your R&D qualifies in 2 minutes</h2>
-          <p>Our free eligibility quiz gives you an instant answer and an estimate of what you could get back. No sign-up, no commitment.</p>
-          <div className="cta-buttons">
-            <Link href="/eligibility" className="btn btn-primary btn-arrow">Take the free quiz </Link>
-            <Link href="/#about" className="btn btn-outline">Talk to Kay directly</Link>
+      {/* CTA */}
+      <div style={{ padding: '80px 32px', maxWidth: 1160, margin: '0 auto', position: 'relative', zIndex: 1 }} className="fade-up">
+        <div className="cta-card">
+          <h2>See if your R&D qualifies — in 2 minutes</h2>
+          <p>Our free eligibility quiz gives you an instant answer and a rough estimate. No sign-up required.</p>
+          <div className="cta-btns">
+            <Link href="/eligibility" className="btn-white btn-arrow">Take the free quiz</Link>
+            <Link href="/calculator" className="btn-white-outline">Estimate your offset →</Link>
           </div>
         </div>
-      </section>
+      </div>
 
-      <footer>
-        <div className="footer-inner">
-          <div className="footer-logo">rd<span>kit.</span></div>
-          <ul className="footer-links">
-            <li><Link href="/">Home</Link></li>
-            <li><Link href="/eligibility">Eligibility Quiz</Link></li>
-            <li><Link href="/#pricing">Pricing</Link></li>
-          </ul>
-          <div className="footer-copy">&copy; 2026 RDKit. ABN coming soon.</div>
-        </div>
-      </footer>
+      <Footer />
     </>
   )
 }
