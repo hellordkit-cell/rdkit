@@ -16,7 +16,10 @@ export default function Nav() {
           <Link href="/calculator" className={`nav-link${isActive('/calculator') ? ' active' : ''}`}>Calculator</Link>
           <Link href="/about" className={`nav-link${isActive('/about') ? ' active' : ''}`}>About</Link>
         </div>
-        <Link href="/eligibility" className="btn btn-primary nav-cta">Check eligibility</Link>
+        <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+          <Link href="/eligibility" className="btn btn-outline nav-cta" style={{ padding: '10px 20px' }}>Check eligibility</Link>
+          <Link href="/get-started" className="btn btn-primary nav-cta">Pay deposit →</Link>
+        </div>
       </div>
     </nav>
   )
