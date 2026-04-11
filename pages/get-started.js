@@ -5,7 +5,7 @@ import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 
 // ─── Replace this with your real Stripe Payment Link URL ───────────────────
-const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/YOUR_PAYMENT_LINK'
+const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/test_9B67sK3QS6q0bCy7IQ1ck00'
 // ────────────────────────────────────────────────────────────────────────────
 
 export default function GetStarted() {
