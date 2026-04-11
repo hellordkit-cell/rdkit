@@ -20,7 +20,7 @@ export default function Footer() {
             <div className="footer-col-title">Company</div>
             <Link href="/about">About & Mission</Link>
             <Link href="/eligibility">Free Quiz</Link>
-            <a href="mailto:hello@rdkit.com.au">hello@rdkit.com.au</a>
+            <a href="mailto:hellordkit@gmail.com">hellordkit@gmail.com</a>
           </div>
         </div>
       </div>

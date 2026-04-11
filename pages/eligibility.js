@@ -126,7 +126,7 @@ export default function Eligibility() {
                 </div>
               )}
 
-              <a href="mailto:hello@rdkit.com.au" className="btn btn-primary btn-arrow">
+              <a href="mailto:hellordkit@gmail.com" className="btn btn-primary btn-arrow">
                 {result.cls === 'neg' ? 'Talk to Kay directly' : 'Book your free strategy call'}
               </a>
               <div style={{ marginTop: 16 }}>

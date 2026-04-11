@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 
-const steps = [
+const clientSteps = [
   {
     num: '01',
     title: 'Free eligibility check',
@@ -15,61 +15,105 @@ const steps = [
   {
     num: '02',
     title: '$500 deposit & strategy session',
-    desc: 'Once you\'re in, we schedule a 45-minute deep dive. We go through your R&D activities in detail — what you were trying to achieve, what was technically uncertain, what you tested, what worked and what didn\'t. This is where we scope the full claim.',
+    desc: 'Once you\'re in, we schedule a 45-minute deep dive. We go through your R&D activities in detail — what you were trying to achieve, what was technically uncertain, what you tested, what worked and what didn\'t. This scopes the full claim.',
     includes: ['45-min detailed interview', 'Activity mapping', 'Expenditure scope', 'Claim structure plan'],
     note: 'The $500 deposit is credited against your final success fee — it\'s not an extra cost.'
   },
   {
     num: '03',
-    title: 'Project descriptions & expenditure analysis',
-    desc: 'We write the project descriptions (PDs) — the technical narrative that AusIndustry reviewers assess. We also work through your financials to identify every eligible expenditure category: salaries, contractors, cloud costs, consumables, depreciation.',
+    title: 'We write your project descriptions',
+    desc: 'We write the project descriptions (PDs) — the technical narrative that AusIndustry reviewers assess. We also work through your financials to identify every eligible expenditure: salaries, contractors, cloud costs, consumables, depreciation.',
     includes: ['Full PD writing', 'Eligible expenditure mapping', 'Contractor classification', 'Supporting activity identification'],
-    note: 'You\'ll review every PD before anything is submitted. We\'ll iterate until it\'s exactly right.'
+    note: 'You\'ll review every PD before anything is submitted. We iterate until it\'s exactly right.'
   },
   {
     num: '04',
     title: 'Your review & sign-off',
-    desc: 'We send you the complete claim package to review: all project descriptions, the expenditure schedule, and a summary of what we\'re registering. You approve, suggest edits, or flag anything that doesn\'t look right. We don\'t submit anything without your explicit sign-off.',
-    includes: ['Full claim package', 'Review meeting (if needed)', 'Unlimited revisions'],
-    note: 'Most clients find very little to change at this stage — we\'ve already interviewed you thoroughly.'
+    desc: 'We send you the complete application package: all project descriptions, expenditure schedule, and a plain-English summary. You approve or request changes. Nothing goes further without your explicit sign-off.',
+    includes: ['Full application package', 'Review meeting if needed', 'Unlimited revisions'],
+    note: 'Most clients find very little to change — we\'ve already interviewed you thoroughly.'
   },
   {
     num: '05',
-    title: 'Registration & lodgement',
-    desc: 'We register your R&D activities with AusIndustry via the Business Portal. Your accountant then includes the R&D Tax Offset Schedule when lodging your income tax return. For companies under $20M turnover, the offset typically pays out as a direct cash refund.',
-    includes: ['AusIndustry registration', 'ATO schedule preparation', 'Accountant coordination'],
-    note: 'Deadline: 10 months after your financial year end (April 30 for June 30 FY companies).'
+    title: 'You lodge on AusIndustry, your accountant handles the ATO',
+    desc: 'You (as company director) log into the AusIndustry Business Portal using your myGovID and submit the application we\'ve prepared — we walk you through it step by step. Your registered tax agent then includes the R&D Tax Offset Schedule when lodging your income tax return.',
+    includes: ['We prepare 100% of the application', 'You submit via AusIndustry portal (we guide you)', 'Your tax agent lodges the ATO schedule'],
+    note: 'Deadline: 10 months after your financial year end — April 30 for June 30 FY companies.'
+  }
+]
+
+const accountantSteps = [
+  {
+    num: '01',
+    title: 'Partner with RDKit',
+    desc: 'Email us at hellordkit@gmail.com to apply. We\'ll have a quick 20-minute call to assess fit and set up your partner account. No exclusivity, no lock-in. We work around your existing client relationships.',
+    includes: ['Quick onboarding call', 'Partner agreement', 'Client screening checklist'],
+    note: 'Free to apply. No commitment until your first referral is confirmed.'
+  },
+  {
+    num: '02',
+    title: 'You identify eligible clients',
+    desc: 'We give you a one-page screening checklist to run through your client base. Most software, biotech, manufacturing and engineering companies qualify. You make the introduction — a warm email or a call — and we take it from there.',
+    includes: ['Eligibility screening checklist', 'Training on what qualifies', 'Co-branded assessment link'],
+    note: 'Most SME clients doing any form of product development or process improvement will flag positive.'
+  },
+  {
+    num: '03',
+    title: 'RDKit prepares everything',
+    desc: 'We handle the full technical workload: interviewing the client, writing project descriptions, conducting the financial analysis, and preparing the complete AusIndustry application. You stay informed but don\'t need to do the R&D technical work.',
+    includes: ['Client interviews', 'Project description writing', 'Financial analysis & expenditure mapping', 'Full AusIndustry application prep'],
+    note: 'This is where RDKit\'s expertise sits. You don\'t need to become an R&DTI specialist.'
+  },
+  {
+    num: '04',
+    title: 'Client lodges, you handle the ATO return',
+    desc: 'The client submits the prepared application on the AusIndustry portal (we guide them through it). As their registered tax agent, you then include the R&D Tax Offset Schedule in their income tax return — the schedule we\'ve already prepared for you.',
+    includes: ['We prepare the ATO R&D schedule', 'You lodge it with the client\'s tax return', 'Client submits AusIndustry portal themselves'],
+    note: 'This keeps the legal structure clean — you handle what requires a registered tax agent, we handle the rest.'
+  },
+  {
+    num: '05',
+    title: 'Claim completes, you get paid',
+    desc: 'Once the offset pays out, your revenue share is transferred within 14 days. Transparent, tracked, and consistent. For Co-Claim partners, your own accounting fee is charged separately on top.',
+    includes: ['Revenue share paid within 14 days', 'Transparent tracking dashboard', 'Your own accounting fee is separate'],
+    note: 'Average claim returns $60–120k to your client — and a meaningful fee to your practice.'
   }
 ]
 
 const faqs = [
   {
     q: 'How long does the whole process take?',
-    a: 'From starting with us to submitting your registration: 4–6 weeks typically. The ATO/AusIndustry then processes the claim on their timeline, usually in line with your tax return lodgement.'
+    a: 'From starting with us to submitting your AusIndustry registration: 4–6 weeks typically. The ATO then processes the offset in line with your tax return lodgement.'
   },
   {
     q: 'What if we haven\'t kept great records?',
-    a: 'It\'s more common than you\'d think. We can work with whatever you have — git commit histories, meeting notes, Jira tickets, invoices — and help you reconstruct a credible contemporaneous record. The sooner you start keeping records, the better, but imperfect records aren\'t a dealbreaker.'
+    a: 'More common than you\'d think. We can work with whatever you have — git commit histories, meeting notes, Jira tickets, invoices — and help reconstruct a credible contemporaneous record. The sooner you start keeping records, the better, but imperfect records aren\'t a dealbreaker.'
   },
   {
     q: 'Do we need to be profitable to claim?',
-    a: 'No — and this is one of the most misunderstood aspects. If your turnover is under $20M, the offset is refundable. That means even if you\'re in a tax loss position, you get the offset as a cash payment. It\'s one of the most valuable features of the R&DTI for early-stage companies.'
+    a: 'No. If your turnover is under $20M, the offset is refundable — meaning even if you\'re in a tax loss position, you receive the offset as a direct cash payment. It\'s one of the most valuable features of the R&DTI for early-stage companies.'
   },
   {
-    q: 'What does your accountant need to do?',
-    a: 'Your accountant lodges the R&D Tax Offset Schedule (part of your income tax return). We prepare all the R&D-specific documentation. Most accountants are comfortable with this and appreciate having the technical work done for them.'
+    q: 'What does our accountant need to do?',
+    a: 'Your accountant lodges the R&D Tax Offset Schedule as part of your income tax return. We prepare all the R&D-specific documentation and the schedule itself. Most accountants find very little extra work on their end.'
+  },
+  {
+    q: 'Who actually lodges the AusIndustry application?',
+    a: 'You do — as the company director, via your myGovID on the AusIndustry Business Portal. We prepare 100% of the application content and walk you through submitting it. This keeps the process legally clean and you in control.'
   },
   {
     q: 'What if AusIndustry comes back with questions?',
-    a: 'We\'re here for that. We\'ll respond to any queries from AusIndustry on your behalf and make any adjustments needed. Our 100% first-submission approval rate means this rarely happens when claims are prepared properly.'
+    a: 'We help you respond. We\'ll draft responses to any AusIndustry queries and work with you to provide any additional documentation needed. Our thorough preparation means this rarely happens.'
   },
   {
     q: 'Can we claim activities from previous years?',
-    a: 'You can\'t retroactively claim years that have already been lodged, but if your prior year tax return hasn\'t been lodged yet, it may still be possible. Get in touch and we can assess your specific situation.'
+    a: 'You can\'t retroactively claim years already lodged, but if your prior year tax return hasn\'t been lodged yet, it may still be possible. Get in touch and we\'ll assess your specific situation.'
   }
 ]
 
 export default function HowItWorks() {
+  const [audience, setAudience] = useState('client')
+
   useEffect(() => {
     const obs = new IntersectionObserver(
       entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') }),
@@ -79,11 +123,13 @@ export default function HowItWorks() {
     return () => obs.disconnect()
   }, [])
 
+  const steps = audience === 'client' ? clientSteps : accountantSteps
+
   return (
     <>
       <Head>
         <title>How It Works — RDKit R&D Tax Claims</title>
-        <meta name="description" content="A clear, honest breakdown of how RDKit prepares and lodges your R&D Tax Incentive claim — from eligibility check to offset in your account." />
+        <meta name="description" content="A clear, honest breakdown of how RDKit prepares your R&D Tax Incentive claim — for companies and accounting firms." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
@@ -92,14 +138,58 @@ export default function HowItWorks() {
       <div className="hiw-hero fade-up">
         <div className="tag tag-cyan" style={{ marginBottom: 20 }}>How it works</div>
         <h1>From eligibility check to cash in your account</h1>
-        <p>A clear, honest breakdown of every step — including what we do, what you do, and how long it takes.</p>
+        <p>A clear, step-by-step breakdown for both companies claiming R&D and accounting firms partnering with us.</p>
+
+        {/* Audience toggle */}
+        <div style={{ display: 'flex', gap: 8, marginTop: 32, justifyContent: 'center' }}>
+          <button
+            onClick={() => setAudience('client')}
+            style={{
+              padding: '10px 28px',
+              borderRadius: 50,
+              border: audience === 'client' ? 'none' : '1.5px solid var(--card-border)',
+              background: audience === 'client' ? 'var(--coral)' : 'transparent',
+              color: audience === 'client' ? 'white' : 'var(--muted)',
+              fontFamily: 'var(--sans)',
+              fontSize: '0.9rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'all 0.2s'
+            }}
+          >
+            I&apos;m a company
+          </button>
+          <button
+            onClick={() => setAudience('accountant')}
+            style={{
+              padding: '10px 28px',
+              borderRadius: 50,
+              border: audience === 'accountant' ? 'none' : '1.5px solid var(--card-border)',
+              background: audience === 'accountant' ? 'var(--purple)' : 'transparent',
+              color: audience === 'accountant' ? 'white' : 'var(--muted)',
+              fontFamily: 'var(--sans)',
+              fontSize: '0.9rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'all 0.2s'
+            }}
+          >
+            I&apos;m an accounting firm
+          </button>
+        </div>
+
+        {audience === 'accountant' && (
+          <p style={{ marginTop: 16, fontSize: '0.875rem', color: 'var(--muted)', fontStyle: 'italic' }}>
+            Showing the partnership process for accounting firms and tax agents.
+          </p>
+        )}
       </div>
 
       <div className="hiw-steps fade-up">
         {steps.map((step, i) => (
           <div className="step-item" key={i}>
             <div>
-              <div className="step-num-circle">{step.num}</div>
+              <div className="step-num-circle" style={{ background: audience === 'accountant' ? 'var(--purple)' : undefined }}>{step.num}</div>
             </div>
             <div className="step-content">
               <h3>{step.title}</h3>
@@ -110,13 +200,47 @@ export default function HowItWorks() {
                 ))}
               </div>
               {step.note && (
-                <p style={{ fontSize: '0.8rem', color: 'var(--cyan)', marginTop: 12, marginBottom: 0, fontStyle: 'italic' }}>
+                <p style={{ fontSize: '0.8rem', color: audience === 'accountant' ? 'var(--purple)' : 'var(--cyan)', marginTop: 12, marginBottom: 0, fontStyle: 'italic' }}>
                   {step.note}
                 </p>
               )}
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Role clarity box */}
+      <div style={{ padding: '0 32px 80px', maxWidth: 860, margin: '0 auto', position: 'relative', zIndex: 1 }} className="fade-up">
+        <div style={{ background: 'var(--bg-alt)', border: '1px solid var(--card-border)', borderRadius: 20, padding: '36px 40px' }}>
+          <div className="section-tag" style={{ marginBottom: 16 }}>// Who does what</div>
+          <h3 style={{ fontFamily: 'var(--serif)', fontSize: '1.4rem', fontWeight: 600, marginBottom: 24 }}>Clear separation of responsibilities</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 20 }}>
+            <div>
+              <div style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: 'var(--coral)', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 12 }}>RDKit handles</div>
+              {['R&D activity descriptions', 'Financial analysis & expenditure mapping', 'Full AusIndustry application preparation', 'Guiding you through portal submission'].map((item, i) => (
+                <div key={i} style={{ fontSize: '0.85rem', color: 'var(--dark)', paddingLeft: 20, position: 'relative', marginBottom: 8, lineHeight: 1.5 }}>
+                  <span style={{ position: 'absolute', left: 0, color: 'var(--coral)', fontWeight: 700 }}>✓</span> {item}
+                </div>
+              ))}
+            </div>
+            <div>
+              <div style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: 'var(--cyan)', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 12 }}>Company director handles</div>
+              {['Submitting the AusIndustry portal application (using myGovID)', 'Reviewing & approving project descriptions', 'Providing R&D activity details in our interview'].map((item, i) => (
+                <div key={i} style={{ fontSize: '0.85rem', color: 'var(--dark)', paddingLeft: 20, position: 'relative', marginBottom: 8, lineHeight: 1.5 }}>
+                  <span style={{ position: 'absolute', left: 0, color: 'var(--cyan)', fontWeight: 700 }}>✓</span> {item}
+                </div>
+              ))}
+            </div>
+            <div>
+              <div style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: 'var(--purple)', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 12 }}>Tax agent handles</div>
+              {['Lodging the income tax return', 'Including the R&D Tax Offset Schedule (which we prepare)', 'Any ATO correspondence post-lodgement'].map((item, i) => (
+                <div key={i} style={{ fontSize: '0.85rem', color: 'var(--dark)', paddingLeft: 20, position: 'relative', marginBottom: 8, lineHeight: 1.5 }}>
+                  <span style={{ position: 'absolute', left: 0, color: 'var(--purple)', fontWeight: 700 }}>✓</span> {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Timeline */}
@@ -127,21 +251,21 @@ export default function HowItWorks() {
           <div className="timeline-row">
             <div className="timeline-week">Week 0</div>
             <div className="timeline-content">
-              <h4>Eligibility check & scoping call</h4>
+              <h4>Eligibility check &amp; scoping call</h4>
               <p>Free assessment. You&rsquo;ll know within 48 hours whether we think you have a strong claim.</p>
             </div>
           </div>
           <div className="timeline-row">
             <div className="timeline-week">Week 1</div>
             <div className="timeline-content">
-              <h4>Strategy session & deposit</h4>
+              <h4>Strategy session &amp; deposit</h4>
               <p>45-minute deep-dive interview. We scope the full claim and agree on the approach.</p>
             </div>
           </div>
           <div className="timeline-row">
             <div className="timeline-week">Weeks 2–3</div>
             <div className="timeline-content">
-              <h4>PD drafting & expenditure mapping</h4>
+              <h4>PD drafting &amp; expenditure mapping</h4>
               <p>We write project descriptions and work through your financials. You&rsquo;ll see a first draft by end of week 3.</p>
             </div>
           </div>
@@ -153,10 +277,10 @@ export default function HowItWorks() {
             </div>
           </div>
           <div className="timeline-row">
-            <div className="timeline-week">Week 5–6</div>
+            <div className="timeline-week">Weeks 5–6</div>
             <div className="timeline-content">
-              <h4>AusIndustry registration & ATO schedule</h4>
-              <p>We register your activities. Your accountant includes the schedule with your tax return.</p>
+              <h4>AusIndustry portal lodgement &amp; ATO schedule</h4>
+              <p>You submit via the AusIndustry portal (we walk you through it). Your tax agent includes the R&D schedule with your return.</p>
             </div>
           </div>
           <div className="timeline-row">
@@ -181,7 +305,7 @@ export default function HowItWorks() {
             <div style={{ fontSize: '0.875rem', color: 'var(--muted)', marginBottom: 24 }}>deposit + 5% of offset (min. $2,500 total fee)</div>
             <div style={{ height: 1, background: 'var(--card-border)', margin: '20px 0' }}></div>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 28 }}>
-              {['Free eligibility check','45-min strategy session','Full PD writing','Expenditure analysis','AusIndustry registration','$500 credited to final fee'].map((f,i) => (
+              {['Free eligibility check', '45-min strategy session', 'Project description writing', 'Financial & expenditure analysis', 'Full AusIndustry application prep', '$500 deposit credited to final fee'].map((f, i) => (
                 <li key={i} style={{ fontSize: '0.875rem', color: 'var(--dark)', paddingLeft: 22, position: 'relative' }}>
                   <span style={{ position: 'absolute', left: 0, color: 'var(--sage)', fontWeight: 700 }}>✓</span> {f}
                 </li>
@@ -197,7 +321,7 @@ export default function HowItWorks() {
             <div style={{ fontSize: '0.875rem', color: 'var(--muted)', marginBottom: 24 }}>of offset (min. $2,000, no deposit required)</div>
             <div style={{ height: 1, background: 'var(--card-border)', margin: '20px 0' }}></div>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 28 }}>
-              {['Everything in Starter','No upfront deposit','Annual review included','Priority turnaround','Direct line to Kay','Discounted rate for loyalty'].map((f,i) => (
+              {['Everything in Starter', 'No upfront deposit', 'Annual review included', 'Priority turnaround', 'Direct line to Kay', 'Loyalty rate discount'].map((f, i) => (
                 <li key={i} style={{ fontSize: '0.875rem', color: 'var(--dark)', paddingLeft: 22, position: 'relative' }}>
                   <span style={{ position: 'absolute', left: 0, color: 'var(--sage)', fontWeight: 700 }}>✓</span> {f}
                 </li>
@@ -206,6 +330,9 @@ export default function HowItWorks() {
             <Link href="/eligibility" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>Get started</Link>
           </div>
         </div>
+        <p style={{ textAlign: 'center', marginTop: 20, fontSize: '0.85rem', color: 'var(--muted)' }}>
+          Accounting firm? <Link href="/for-accountants" style={{ color: 'var(--coral)', textDecoration: 'none', fontWeight: 600 }}>See partner pricing →</Link>
+        </p>
       </div>
 
       {/* FAQ */}
