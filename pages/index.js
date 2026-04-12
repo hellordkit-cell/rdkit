@@ -170,7 +170,7 @@ export default function Home() {
         <div className="section-header" style={{ marginBottom: 48 }}>
           <div className="section-tag">// Why RDKit</div>
           <h2 className="section-h2">Boutique speed. No corporate overhead.</h2>
-          <p className="section-sub">Big consulting firms take months and charge 15–25% of your offset. RDKit moves at your pace — the faster you get us what we need, the faster your claim is done. Some clients are submitted in under a week.</p>
+          <p className="section-sub">Big consulting firms take months and charge 15–25%. RDKit works to your timeline — done in a week if that&rsquo;s what you need, or at a comfortable pace if you prefer. You decide. We deliver.</p>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
@@ -183,7 +183,7 @@ export default function Home() {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
               {[
-                ['⚡', 'As fast as you move', 'We match your pace — some claims submitted in under a week'],
+                ['⚡', 'Your timeline, your call', 'Done in a week or a few weeks — we work around you, not the other way around'],
                 ['💬', 'Direct access', 'You work with Kay directly — no account managers, no hand-offs'],
                 ['💰', '5% success fee', 'Minimum $2,500. No upfront cost beyond the $500 deposit'],
                 ['📋', 'We prepare everything', 'PDs, financial analysis, full application — handed to you ready to lodge'],

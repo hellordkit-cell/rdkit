@@ -246,51 +246,66 @@ export default function HowItWorks() {
       {/* Timeline */}
       <div className="hiw-timeline fade-up">
         <div className="timeline-inner">
-          <div className="section-tag">// Timeline</div>
-          <h2 className="section-h2" style={{ marginBottom: 12 }}>The faster you move, the faster we move.</h2>
-          <p style={{ color: 'var(--muted)', fontSize: '0.95rem', lineHeight: 1.75, marginBottom: 32, maxWidth: 640 }}>
-            There&rsquo;s no fixed timeline at RDKit — we work at your pace. Some clients go from first call to AusIndustry submission in under a week. The steps below show what&rsquo;s involved; how fast you get through them is up to you.
+          <div className="section-tag">// Your timeline</div>
+          <h2 className="section-h2" style={{ marginBottom: 12 }}>Done in a week. Or whenever suits you.</h2>
+          <p style={{ color: 'var(--muted)', fontSize: '0.95rem', lineHeight: 1.75, marginBottom: 24, maxWidth: 660 }}>
+            There&rsquo;s no fixed deadline we impose on you. Some clients want it done fast — we&rsquo;ve completed claims in under a week when that&rsquo;s the priority. Others prefer to move at a more comfortable pace over a few weeks. Either way, we adapt to you completely. The steps below are the same — only the timing changes.
           </p>
+
+          {/* Timeline callout */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 40, maxWidth: 640 }}>
+            <div style={{ background: 'rgba(255,107,84,0.06)', border: '1.5px solid rgba(255,107,84,0.2)', borderRadius: 14, padding: '20px 22px' }}>
+              <div style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: 'var(--coral)', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>⚡ Fast track</div>
+              <div style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--charcoal)', marginBottom: 4 }}>Under a week</div>
+              <div style={{ fontSize: '0.82rem', color: 'var(--muted)', lineHeight: 1.5 }}>You&rsquo;re available, responsive, and ready to move. We clear everything else and get it done.</div>
+            </div>
+            <div style={{ background: 'rgba(0,180,216,0.05)', border: '1.5px solid rgba(0,180,216,0.15)', borderRadius: 14, padding: '20px 22px' }}>
+              <div style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: 'var(--cyan)', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>🗓 Your pace</div>
+              <div style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--charcoal)', marginBottom: 4 }}>A few weeks</div>
+              <div style={{ fontSize: '0.82rem', color: 'var(--muted)', lineHeight: 1.5 }}>Life gets in the way — that&rsquo;s fine. We&rsquo;re here when you are. No pressure, no chasing.</div>
+            </div>
+          </div>
+
           <div className="timeline-row">
-            <div className="timeline-week">Day 1</div>
+            <div className="timeline-week">Step 1</div>
             <div className="timeline-content">
               <h4>Eligibility check &amp; scoping call</h4>
-              <p>Free assessment. You&rsquo;ll know the same day whether you have a strong claim and what your offset estimate looks like.</p>
+              <p>Free assessment. You&rsquo;ll know whether you have a strong claim and get a rough offset estimate — all in one call. Book it whenever you&rsquo;re ready.</p>
             </div>
           </div>
           <div className="timeline-row">
-            <div className="timeline-week">Day 2–3</div>
+            <div className="timeline-week">Step 2</div>
             <div className="timeline-content">
               <h4>Strategy session &amp; deposit</h4>
-              <p>45-minute deep-dive interview. We scope the full claim. Pay the $500 deposit and work begins immediately.</p>
+              <p>45-minute deep-dive interview. We scope the full claim and agree on approach. Pay the $500 deposit and work begins the same day — or whenever you schedule it.</p>
             </div>
           </div>
           <div className="timeline-row">
-            <div className="timeline-week">Day 3–5</div>
+            <div className="timeline-week">Step 3</div>
             <div className="timeline-content">
               <h4>PD drafting &amp; expenditure mapping</h4>
-              <p>We write your project descriptions and map eligible expenditure. You&rsquo;ll see a first draft within days of the interview — not weeks.</p>
+              <p>We write your project descriptions and map eligible expenditure. Turnaround on our end is fast — you&rsquo;ll have a first draft to review as soon as you send us what we need.</p>
             </div>
           </div>
           <div className="timeline-row">
-            <div className="timeline-week">Day 5–6</div>
+            <div className="timeline-week">Step 4</div>
             <div className="timeline-content">
               <h4>Review &amp; sign-off</h4>
-              <p>You review the full package. Quick turnaround on any feedback. We finalise and get your sign-off — often same day.</p>
+              <p>You review the full package at your own pace. One round of feedback or ten — we revise until it&rsquo;s right. Nothing moves forward without your explicit sign-off.</p>
             </div>
           </div>
           <div className="timeline-row">
-            <div className="timeline-week">Day 6–7</div>
+            <div className="timeline-week">Step 5</div>
             <div className="timeline-content">
               <h4>AusIndustry portal &amp; ATO schedule</h4>
-              <p>You submit via the AusIndustry portal — we walk you through it live. Your tax agent includes the R&D schedule with your return.</p>
+              <p>You submit via the AusIndustry portal — we walk you through it live. Your tax agent includes the R&D schedule with your return. Ready to go whenever you are.</p>
             </div>
           </div>
           <div className="timeline-row">
-            <div className="timeline-week">After lodgement</div>
+            <div className="timeline-week">Done</div>
             <div className="timeline-content">
               <h4>Offset pays out</h4>
-              <p>For refundable claims (under $20M turnover), the cash arrives within weeks of your tax return being processed.</p>
+              <p>For refundable claims (under $20M turnover), the cash arrives within weeks of your tax return being processed by the ATO.</p>
             </div>
           </div>
         </div>
