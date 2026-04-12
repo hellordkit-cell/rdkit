@@ -9,6 +9,7 @@ export default function Document() {
         <meta name="robots" content="index, follow" />
         <meta name="author" content="RDKit" />
         <meta name="theme-color" content="#FF6B54" />
+        <meta name="google-site-verification" content="0ZkFTTXg4L9vTuFw5xQ_50SUpHSOQBOYW07nxsDvEf0" />
 
         {/* Favicon */}
         <link rel="icon" href="/favicon.ico" />
