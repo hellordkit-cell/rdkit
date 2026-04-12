@@ -31,9 +31,21 @@ export default function Calculator() {
   return (
     <>
       <Head>
-        <title>R&D Tax Offset Calculator — RDKit</title>
-        <meta name="description" content="Instantly estimate your Australian R&D tax offset. Real-time calculator — no sign-up needed." />
+        <title>R&D Tax Offset Calculator — Estimate Your Claim | RDKit</title>
+        <meta name="description" content="Instantly estimate your Australian R&D Tax Incentive offset. Enter your R&D spend and see how much you could recover. Free, no sign-up needed." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="RDKit" />
+        <meta property="og:title" content="R&D Tax Offset Calculator — Estimate Your Claim | RDKit" />
+        <meta property="og:description" content="Instantly estimate your Australian R&D Tax Incentive offset. Enter your R&D spend and see how much you could recover. Free, no sign-up needed." />
+        <meta property="og:url" content="https://rdkit.com.au/calculator" />
+        <meta property="og:image" content="https://rdkit.com.au/og-image.png" />
+        <meta property="og:locale" content="en_AU" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="R&D Tax Offset Calculator — Estimate Your Claim | RDKit" />
+        <meta name="twitter:description" content="Instantly estimate your Australian R&D Tax Incentive offset. Enter your R&D spend and see how much you could recover. Free, no sign-up needed." />
+        <meta name="twitter:image" content="https://rdkit.com.au/og-image.png" />
+        <link rel="canonical" href="https://rdkit.com.au/calculator" />
       </Head>
 
       <Nav />

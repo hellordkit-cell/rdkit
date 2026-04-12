@@ -21,9 +21,21 @@ export default function GetStarted() {
   return (
     <>
       <Head>
-        <title>Get Started — RDKit $500 Deposit</title>
-        <meta name="description" content="Pay your $500 RDKit deposit to kick off your R&DTI claim. Credited in full against your final success fee." />
+        <title>Get Started — Pay Your $500 R&DTI Deposit | RDKit</title>
+        <meta name="description" content="Pay your $500 RDKit deposit to kick off your R&D Tax Incentive claim. Credited in full against your final success fee. Secure payment via Stripe." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="RDKit" />
+        <meta property="og:title" content="Get Started — Pay Your $500 R&DTI Deposit | RDKit" />
+        <meta property="og:description" content="Pay your $500 RDKit deposit to kick off your R&D Tax Incentive claim. Credited in full against your final success fee. Secure payment via Stripe." />
+        <meta property="og:url" content="https://rdkit.com.au/get-started" />
+        <meta property="og:image" content="https://rdkit.com.au/og-image.png" />
+        <meta property="og:locale" content="en_AU" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Get Started — Pay Your $500 R&DTI Deposit | RDKit" />
+        <meta name="twitter:description" content="Pay your $500 RDKit deposit to kick off your R&D Tax Incentive claim. Credited in full against your final success fee. Secure payment via Stripe." />
+        <meta name="twitter:image" content="https://rdkit.com.au/og-image.png" />
+        <link rel="canonical" href="https://rdkit.com.au/get-started" />
       </Head>
 
       <Nav />

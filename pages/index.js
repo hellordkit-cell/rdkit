@@ -31,8 +31,20 @@ export default function Home() {
     <>
       <Head>
         <title>RDKit — R&D Tax Claims Made Simple for Australian Companies</title>
-        <meta name="description" content="RDKit helps Australian companies claim the R&D Tax Incentive at 5% — a fraction of what big consultants charge. Free eligibility quiz." />
+        <meta name="description" content="RDKit helps Australian companies claim the R&D Tax Incentive at 5% — a fraction of what big consultants charge. Done in as little as a week. Free eligibility quiz." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="RDKit" />
+        <meta property="og:title" content="RDKit — R&D Tax Claims Made Simple for Australian Companies" />
+        <meta property="og:description" content="RDKit helps Australian companies claim the R&D Tax Incentive at 5% — a fraction of what big consultants charge. Done in as little as a week. Free eligibility quiz." />
+        <meta property="og:url" content="https://rdkit.com.au" />
+        <meta property="og:image" content="https://rdkit.com.au/og-image.png" />
+        <meta property="og:locale" content="en_AU" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="RDKit — R&D Tax Claims Made Simple for Australian Companies" />
+        <meta name="twitter:description" content="RDKit helps Australian companies claim the R&D Tax Incentive at 5% — a fraction of what big consultants charge. Done in as little as a week. Free eligibility quiz." />
+        <meta name="twitter:image" content="https://rdkit.com.au/og-image.png" />
+        <link rel="canonical" href="https://rdkit.com.au" />
       </Head>
 
       <Nav />

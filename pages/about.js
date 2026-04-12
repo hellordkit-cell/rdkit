@@ -44,9 +44,21 @@ export default function About() {
   return (
     <>
       <Head>
-        <title>About RDKit — Mission, Values & Kay</title>
-        <meta name="description" content="Who we are, what we stand for, and why RDKit exists. Meet Kay, the expert behind your R&D tax claim." />
+        <title>About RDKit — Australia's R&DTI Documentation Specialist</title>
+        <meta name="description" content="Who we are, what we stand for, and why RDKit exists. Expert R&DTI documentation and financial analysis at 5% of what you recover." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="RDKit" />
+        <meta property="og:title" content="About RDKit — Australia's R&DTI Documentation Specialist" />
+        <meta property="og:description" content="Who we are, what we stand for, and why RDKit exists. Expert R&DTI documentation and financial analysis at 5% of what you recover." />
+        <meta property="og:url" content="https://rdkit.com.au/about" />
+        <meta property="og:image" content="https://rdkit.com.au/og-image.png" />
+        <meta property="og:locale" content="en_AU" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="About RDKit — Australia's R&DTI Documentation Specialist" />
+        <meta name="twitter:description" content="Who we are, what we stand for, and why RDKit exists. Expert R&DTI documentation and financial analysis at 5% of what you recover." />
+        <meta name="twitter:image" content="https://rdkit.com.au/og-image.png" />
+        <link rel="canonical" href="https://rdkit.com.au/about" />
       </Head>
 
       <Nav />

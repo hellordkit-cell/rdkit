@@ -129,8 +129,20 @@ export default function HowItWorks() {
     <>
       <Head>
         <title>How It Works — RDKit R&D Tax Claims</title>
-        <meta name="description" content="A clear, honest breakdown of how RDKit prepares your R&D Tax Incentive claim — for companies and accounting firms." />
+        <meta name="description" content="A clear, honest breakdown of how RDKit prepares your R&D Tax Incentive claim — for companies and accounting firms. Done in a week or at your pace." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="RDKit" />
+        <meta property="og:title" content="How It Works — RDKit R&D Tax Claims" />
+        <meta property="og:description" content="A clear, honest breakdown of how RDKit prepares your R&D Tax Incentive claim — for companies and accounting firms. Done in a week or at your pace." />
+        <meta property="og:url" content="https://rdkit.com.au/how-it-works" />
+        <meta property="og:image" content="https://rdkit.com.au/og-image.png" />
+        <meta property="og:locale" content="en_AU" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="How It Works — RDKit R&D Tax Claims" />
+        <meta name="twitter:description" content="A clear, honest breakdown of how RDKit prepares your R&D Tax Incentive claim — for companies and accounting firms. Done in a week or at your pace." />
+        <meta name="twitter:image" content="https://rdkit.com.au/og-image.png" />
+        <link rel="canonical" href="https://rdkit.com.au/how-it-works" />
       </Head>
 
       <Nav />
@@ -364,6 +376,22 @@ export default function HowItWorks() {
           </div>
         ))}
       </div>
+
+      {/* FAQ JSON-LD schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: faqs.map(f => ({
+              '@type': 'Question',
+              name: f.q,
+              acceptedAnswer: { '@type': 'Answer', text: f.a },
+            })),
+          }),
+        }}
+      />
 
       <Footer />
     </>

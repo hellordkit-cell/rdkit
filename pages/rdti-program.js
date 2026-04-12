@@ -17,9 +17,21 @@ export default function RdtiProgram() {
   return (
     <>
       <Head>
-        <title>The R&D Tax Incentive Explained — RDKit</title>
-        <meta name="description" content="Plain-English guide to the Australian R&D Tax Incentive: who qualifies, how much you get back, real case studies, and how RDKit helps." />
+        <title>The R&D Tax Incentive Explained — Australia | RDKit</title>
+        <meta name="description" content="Plain-English guide to the Australian R&D Tax Incentive: who qualifies, how much you get back, and how to claim. 43.5% for small companies, 38.5% for large." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="RDKit" />
+        <meta property="og:title" content="The R&D Tax Incentive Explained — Australia | RDKit" />
+        <meta property="og:description" content="Plain-English guide to the Australian R&D Tax Incentive: who qualifies, how much you get back, and how to claim. 43.5% for small companies, 38.5% for large." />
+        <meta property="og:url" content="https://rdkit.com.au/rdti-program" />
+        <meta property="og:image" content="https://rdkit.com.au/og-image.png" />
+        <meta property="og:locale" content="en_AU" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="The R&D Tax Incentive Explained — Australia | RDKit" />
+        <meta name="twitter:description" content="Plain-English guide to the Australian R&D Tax Incentive: who qualifies, how much you get back, and how to claim. 43.5% for small companies, 38.5% for large." />
+        <meta name="twitter:image" content="https://rdkit.com.au/og-image.png" />
+        <link rel="canonical" href="https://rdkit.com.au/rdti-program" />
       </Head>
 
       <Nav />
