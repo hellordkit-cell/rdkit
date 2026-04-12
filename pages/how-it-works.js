@@ -83,7 +83,7 @@ const accountantSteps = [
 const faqs = [
   {
     q: 'How long does the whole process take?',
-    a: 'It depends entirely on how quickly you can get us what we need — and we make that as easy as possible. Some clients are submitted within a week of starting. The faster you move, the faster we move. The ATO then processes the offset in line with your tax return lodgement.'
+    a: 'Shorter than you think — and entirely in your hands. Here\'s the honest answer: we have no waiting list, no internal review queues, and no account manager hand-offs slowing things down. The moment you book your strategy session, we start. The moment you send us your information, we write. The moment you approve, we\'re ready to submit. Some clients go from first call to AusIndustry submission in under a week. Others take a few weeks because life gets in the way — and that\'s fine too. The pace is yours. We just make sure we\'re never the bottleneck.'
   },
   {
     q: 'What if we haven\'t kept great records?',
