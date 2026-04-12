@@ -165,6 +165,74 @@ export default function Home() {
         </div>
       </div>
 
+      {/* RDKit vs Corporate */}
+      <div className="fade-up" style={{ padding: '80px 32px', maxWidth: 1100, margin: '0 auto', position: 'relative', zIndex: 1 }}>
+        <div className="section-header" style={{ marginBottom: 48 }}>
+          <div className="section-tag">// Why RDKit</div>
+          <h2 className="section-h2">Boutique speed. No corporate overhead.</h2>
+          <p className="section-sub">Big consulting firms take months and charge 15–25% of your offset. RDKit delivers the same result in weeks, at 5%.</p>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+          {/* RDKit column */}
+          <div style={{ background: 'var(--bg-dark)', border: '1.5px solid var(--coral)', borderRadius: 20, padding: '36px 32px', position: 'relative', overflow: 'hidden' }}>
+            <div style={{ position: 'absolute', top: -30, right: -30, width: 120, height: 120, borderRadius: '50%', background: 'rgba(255,107,84,0.08)' }} />
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 24 }}>
+              <div style={{ background: 'var(--coral)', borderRadius: 8, padding: '4px 12px', fontFamily: 'var(--mono)', fontSize: '0.7rem', fontWeight: 700, color: 'white', textTransform: 'uppercase', letterSpacing: 1 }}>RDKit</div>
+              <div style={{ fontFamily: 'var(--mono)', fontSize: '0.75rem', color: 'var(--coral)' }}>// the boutique way</div>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+              {[
+                ['⚡', '4–6 weeks', 'From kick-off to AusIndustry submission'],
+                ['💬', 'Direct access', 'You work with Kay directly — no account managers, no hand-offs'],
+                ['💰', '5% success fee', 'Minimum $2,500. No upfront cost beyond the $500 deposit'],
+                ['📋', 'We prepare everything', 'PDs, financial analysis, full application — handed to you ready to lodge'],
+                ['🔄', 'Unlimited revisions', 'We iterate until you\'re happy. No extra charges'],
+                ['✅', '100% first-submission rate', 'Thorough preparation means no back-and-forth with AusIndustry'],
+              ].map(([icon, title, desc], i) => (
+                <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+                  <div style={{ fontSize: '1.1rem', marginTop: 1 }}>{icon}</div>
+                  <div>
+                    <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'white', marginBottom: 2 }}>{title}</div>
+                    <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', lineHeight: 1.5 }}>{desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Corporate column */}
+          <div style={{ background: 'var(--card)', border: '1px solid var(--card-border)', borderRadius: 20, padding: '36px 32px', position: 'relative' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 24 }}>
+              <div style={{ background: 'var(--bg-alt)', borderRadius: 8, padding: '4px 12px', fontFamily: 'var(--mono)', fontSize: '0.7rem', fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: 1 }}>Big firms</div>
+              <div style={{ fontFamily: 'var(--mono)', fontSize: '0.75rem', color: 'var(--muted)' }}>// the corporate way</div>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+              {[
+                ['🐌', '3–6 months', 'Slow onboarding, multiple review layers, delayed submissions'],
+                ['📞', 'Junior account managers', 'Your actual work is handled by juniors, reviewed late in the process'],
+                ['💸', '15–25% of your offset', 'On a $100k claim that\'s $15,000–25,000 gone before you see a cent'],
+                ['📁', 'You do the legwork', 'Expect to compile your own records and chase responses'],
+                ['💲', 'Revision fees', 'Changes often attract additional billing'],
+                ['⏳', 'AusIndustry queries common', 'Rushed or templated claims attract more scrutiny'],
+              ].map(([icon, title, desc], i) => (
+                <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', opacity: 0.7 }}>
+                  <div style={{ fontSize: '1.1rem', marginTop: 1 }}>{icon}</div>
+                  <div>
+                    <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--charcoal)', marginBottom: 2 }}>{title}</div>
+                    <div style={{ fontSize: '0.8rem', color: 'var(--muted)', lineHeight: 1.5 }}>{desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div style={{ textAlign: 'center', marginTop: 36 }}>
+          <Link href="/get-started" className="btn btn-primary">Get started for $500 →</Link>
+        </div>
+      </div>
+
       {/* Industries */}
       <div className="home-industries fade-up">
         <div className="industries-inner">
