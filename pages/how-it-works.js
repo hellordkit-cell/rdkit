@@ -83,7 +83,7 @@ const accountantSteps = [
 const faqs = [
   {
     q: 'How long does the whole process take?',
-    a: 'From starting with us to submitting your AusIndustry registration: 4–6 weeks typically. The ATO then processes the offset in line with your tax return lodgement.'
+    a: 'It depends entirely on how quickly you can get us what we need — and we make that as easy as possible. Some clients are submitted within a week of starting. The faster you move, the faster we move. The ATO then processes the offset in line with your tax return lodgement.'
   },
   {
     q: 'What if we haven\'t kept great records?',
@@ -246,48 +246,51 @@ export default function HowItWorks() {
       {/* Timeline */}
       <div className="hiw-timeline fade-up">
         <div className="timeline-inner">
-          <div className="section-tag">// Typical timeline</div>
-          <h2 className="section-h2" style={{ marginBottom: 32 }}>What to expect, week by week</h2>
+          <div className="section-tag">// Timeline</div>
+          <h2 className="section-h2" style={{ marginBottom: 12 }}>The faster you move, the faster we move.</h2>
+          <p style={{ color: 'var(--muted)', fontSize: '0.95rem', lineHeight: 1.75, marginBottom: 32, maxWidth: 640 }}>
+            There&rsquo;s no fixed timeline at RDKit — we work at your pace. Some clients go from first call to AusIndustry submission in under a week. The steps below show what&rsquo;s involved; how fast you get through them is up to you.
+          </p>
           <div className="timeline-row">
-            <div className="timeline-week">Week 0</div>
+            <div className="timeline-week">Day 1</div>
             <div className="timeline-content">
               <h4>Eligibility check &amp; scoping call</h4>
-              <p>Free assessment. You&rsquo;ll know within 48 hours whether we think you have a strong claim.</p>
+              <p>Free assessment. You&rsquo;ll know the same day whether you have a strong claim and what your offset estimate looks like.</p>
             </div>
           </div>
           <div className="timeline-row">
-            <div className="timeline-week">Week 1</div>
+            <div className="timeline-week">Day 2–3</div>
             <div className="timeline-content">
               <h4>Strategy session &amp; deposit</h4>
-              <p>45-minute deep-dive interview. We scope the full claim and agree on the approach.</p>
+              <p>45-minute deep-dive interview. We scope the full claim. Pay the $500 deposit and work begins immediately.</p>
             </div>
           </div>
           <div className="timeline-row">
-            <div className="timeline-week">Weeks 2–3</div>
+            <div className="timeline-week">Day 3–5</div>
             <div className="timeline-content">
               <h4>PD drafting &amp; expenditure mapping</h4>
-              <p>We write project descriptions and work through your financials. You&rsquo;ll see a first draft by end of week 3.</p>
+              <p>We write your project descriptions and map eligible expenditure. You&rsquo;ll see a first draft within days of the interview — not weeks.</p>
             </div>
           </div>
           <div className="timeline-row">
-            <div className="timeline-week">Week 4</div>
+            <div className="timeline-week">Day 5–6</div>
             <div className="timeline-content">
-              <h4>Review, feedback, finalisation</h4>
-              <p>You review the full package. We incorporate any feedback and get to sign-off.</p>
+              <h4>Review &amp; sign-off</h4>
+              <p>You review the full package. Quick turnaround on any feedback. We finalise and get your sign-off — often same day.</p>
             </div>
           </div>
           <div className="timeline-row">
-            <div className="timeline-week">Weeks 5–6</div>
+            <div className="timeline-week">Day 6–7</div>
             <div className="timeline-content">
-              <h4>AusIndustry portal lodgement &amp; ATO schedule</h4>
-              <p>You submit via the AusIndustry portal (we walk you through it). Your tax agent includes the R&D schedule with your return.</p>
+              <h4>AusIndustry portal &amp; ATO schedule</h4>
+              <p>You submit via the AusIndustry portal — we walk you through it live. Your tax agent includes the R&D schedule with your return.</p>
             </div>
           </div>
           <div className="timeline-row">
             <div className="timeline-week">After lodgement</div>
             <div className="timeline-content">
               <h4>Offset pays out</h4>
-              <p>For refundable claims (under $20M turnover), the cash typically arrives within weeks of your tax return being processed.</p>
+              <p>For refundable claims (under $20M turnover), the cash arrives within weeks of your tax return being processed.</p>
             </div>
           </div>
         </div>

@@ -170,7 +170,7 @@ export default function Home() {
         <div className="section-header" style={{ marginBottom: 48 }}>
           <div className="section-tag">// Why RDKit</div>
           <h2 className="section-h2">Boutique speed. No corporate overhead.</h2>
-          <p className="section-sub">Big consulting firms take months and charge 15–25% of your offset. RDKit delivers the same result in weeks, at 5%.</p>
+          <p className="section-sub">Big consulting firms take months and charge 15–25% of your offset. RDKit moves at your pace — the faster you get us what we need, the faster your claim is done. Some clients are submitted in under a week.</p>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
@@ -183,7 +183,7 @@ export default function Home() {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
               {[
-                ['⚡', '4–6 weeks', 'From kick-off to AusIndustry submission'],
+                ['⚡', 'As fast as you move', 'We match your pace — some claims submitted in under a week'],
                 ['💬', 'Direct access', 'You work with Kay directly — no account managers, no hand-offs'],
                 ['💰', '5% success fee', 'Minimum $2,500. No upfront cost beyond the $500 deposit'],
                 ['📋', 'We prepare everything', 'PDs, financial analysis, full application — handed to you ready to lodge'],
