@@ -10,14 +10,13 @@ export default function Home() {
   const [spend, setSpend] = useState(300000)
   const [size, setSize] = useState('small')
 
-  const isSmall = size === 'small'
+  const isSmall    = size === 'small'
   const offsetRate = isSmall ? 0.435 : 0.385
-  const taxRate = isSmall ? 0.25 : 0.30
-  const gross = Math.round(spend * offsetRate)
-  const taxBenefit = Math.round(spend * taxRate)
-  const net = gross - taxBenefit
-  const fee = Math.max(2500, Math.round(net * 0.05) + 500)
-  const keep = net - fee
+  const gross      = Math.round(spend * offsetRate)
+  // Mini calc shows the best-case (loss company) scenario to show full potential
+  const net        = gross
+  const fee        = Math.max(2500, Math.round(gross * 0.05))
+  const keep       = net - fee
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -86,20 +85,19 @@ export default function Home() {
 
           <div className="mini-result">
             <div className="mini-result-row">
-              <span className="rlabel">Gross offset ({isSmall ? '43.5%' : '38.5%'})</span>
+              <span className="rlabel">ATO tax offset ({isSmall ? '43.5%' : '38.5%'})</span>
               <span className="rval">{fmt(gross)}</span>
-            </div>
-            <div className="mini-result-row">
-              <span className="rlabel">Less tax deduction benefit</span>
-              <span className="rval">-{fmt(taxBenefit)}</span>
             </div>
             <div className="mini-result-row big">
               <span className="rlabel" style={{ fontWeight: 700 }}>Cash you receive</span>
               <span className="rval">{fmt(net)}</span>
             </div>
             <div className="mini-result-row" style={{ paddingTop: 8 }}>
-              <span className="rlabel" style={{ color: 'var(--muted)', fontSize: '0.78rem' }}>RDKit fee (5%)</span>
-              <span className="rval" style={{ fontSize: '0.85rem', color: 'var(--coral)' }}>{fmt(fee)}</span>
+              <span className="rlabel" style={{ color: 'var(--muted)', fontSize: '0.78rem' }}>RDKit fee (5% of offset)</span>
+              <span className="rval" style={{ fontSize: '0.85rem', color: 'var(--coral)' }}>-{fmt(fee)}</span>
+            </div>
+            <div className="mini-result-row" style={{ paddingTop: 4 }}>
+              <span className="rlabel" style={{ color: 'var(--sage)', fontSize: '0.75rem' }}>★ Loss companies receive full offset as cash</span>
             </div>
           </div>
 
