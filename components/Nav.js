@@ -6,7 +6,7 @@ const navLinks = [
   { href: '/how-it-works', label: 'How it works' },
   { href: '/rdti-program', label: 'R&DTI Program' },
   { href: '/for-accountants', label: 'For Accountants' },
-  { href: '/calculator', label: 'Claim Assist' },
+  { href: '/calculator', label: 'Claim Assist', assist: true },
   { href: '/about', label: 'About' },
 ]
 
@@ -28,9 +28,14 @@ export default function Nav() {
             <Link
               key={link.href}
               href={link.href}
-              className={`nav-link${isActive(link.href) ? ' active' : ''}`}
+              className={[
+                'nav-link',
+                isActive(link.href) ? 'active' : '',
+                link.assist ? 'nav-claim-assist' : '',
+              ].filter(Boolean).join(' ')}
             >
-              {link.label}
+              {link.assist && <span className="nav-assist-icon" aria-hidden="true">✦</span>}
+              <span>{link.label}</span>
             </Link>
           ))}
         </div>
@@ -60,9 +65,14 @@ export default function Nav() {
             <Link
               key={link.href}
               href={link.href}
-              className={`nav-mobile-link${isActive(link.href) ? ' active' : ''}`}
+              className={[
+                'nav-mobile-link',
+                isActive(link.href) ? 'active' : '',
+                link.assist ? 'nav-mobile-claim-assist' : '',
+              ].filter(Boolean).join(' ')}
             >
-              {link.label}
+              {link.assist && <span className="nav-assist-icon" aria-hidden="true">✦</span>}
+              <span>{link.label}</span>
             </Link>
           ))}
           <div className="nav-mobile-actions">
