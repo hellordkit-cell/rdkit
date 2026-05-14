@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
-import Head from 'next/head'
 import Link from 'next/link'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
+import SEO from '../components/SEO'
+import { seoPages } from '../lib/seo'
 
 const fmt = n => '$' + Math.round(n).toLocaleString()
 
@@ -29,23 +30,7 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        <title>RDKit — R&D Tax Claims Made Simple for Australian Companies</title>
-        <meta name="description" content="RDKit helps Australian companies claim the R&D Tax Incentive at 5% — a fraction of what big consultants charge. Done in as little as a week. Free eligibility quiz." />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="RDKit" />
-        <meta property="og:title" content="RDKit — R&D Tax Claims Made Simple for Australian Companies" />
-        <meta property="og:description" content="RDKit helps Australian companies claim the R&D Tax Incentive at 5% — a fraction of what big consultants charge. Done in as little as a week. Free eligibility quiz." />
-        <meta property="og:url" content="https://rdkit.com.au" />
-        <meta property="og:image" content="https://rdkit.com.au/og-image.png" />
-        <meta property="og:locale" content="en_AU" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="RDKit — R&D Tax Claims Made Simple for Australian Companies" />
-        <meta name="twitter:description" content="RDKit helps Australian companies claim the R&D Tax Incentive at 5% — a fraction of what big consultants charge. Done in as little as a week. Free eligibility quiz." />
-        <meta name="twitter:image" content="https://rdkit.com.au/og-image.png" />
-        <link rel="canonical" href="https://rdkit.com.au" />
-      </Head>
+      <SEO page={seoPages.home} />
 
       <Nav />
 
@@ -176,22 +161,22 @@ export default function Home() {
       </div>
 
       {/* RDKit vs Corporate */}
-      <div className="fade-up" style={{ padding: '80px 32px', maxWidth: 1100, margin: '0 auto', position: 'relative', zIndex: 1 }}>
-        <div className="section-header" style={{ marginBottom: 48 }}>
+      <div className="comparison-section fade-up">
+        <div className="section-header comparison-header">
           <div className="section-tag">// Why RDKit</div>
           <h2 className="section-h2">Boutique speed. No corporate overhead.</h2>
           <p className="section-sub">Big consulting firms take months and charge 15–25%. RDKit works to your timeline — done in a week if that&rsquo;s what you need, or at a comfortable pace if you prefer. You decide. We deliver.</p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+        <div className="comparison-grid">
           {/* RDKit column */}
-          <div style={{ background: 'var(--bg-dark)', border: '1.5px solid var(--coral)', borderRadius: 20, padding: '36px 32px', position: 'relative', overflow: 'hidden' }}>
-            <div style={{ position: 'absolute', top: -30, right: -30, width: 120, height: 120, borderRadius: '50%', background: 'rgba(255,107,84,0.08)' }} />
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 24 }}>
-              <div style={{ background: 'var(--coral)', borderRadius: 8, padding: '4px 12px', fontFamily: 'var(--mono)', fontSize: '0.7rem', fontWeight: 700, color: 'white', textTransform: 'uppercase', letterSpacing: 1 }}>RDKit</div>
-              <div style={{ fontFamily: 'var(--mono)', fontSize: '0.75rem', color: 'var(--coral)' }}>// the boutique way</div>
+          <div className="comparison-card comparison-card-dark">
+            <div className="comparison-orb" />
+            <div className="comparison-kicker-row">
+              <div className="comparison-pill comparison-pill-coral">RDKit</div>
+              <div className="comparison-note comparison-note-coral">// the boutique way</div>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+            <div className="comparison-list">
               {[
                 ['⚡', 'Your timeline, your call', 'Done in a week or a few weeks — we work around you, not the other way around'],
                 ['💬', 'Direct access', 'You work with Kay directly — no account managers, no hand-offs'],
@@ -200,11 +185,11 @@ export default function Home() {
                 ['🔄', 'Unlimited revisions', 'We iterate until you\'re happy. No extra charges'],
                 ['✅', '100% first-submission rate', 'Thorough preparation means no back-and-forth with AusIndustry'],
               ].map(([icon, title, desc], i) => (
-                <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
-                  <div style={{ fontSize: '1.1rem', marginTop: 1 }}>{icon}</div>
+                <div className="comparison-item" key={i}>
+                  <div className="comparison-icon">{icon}</div>
                   <div>
-                    <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'white', marginBottom: 2 }}>{title}</div>
-                    <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', lineHeight: 1.5 }}>{desc}</div>
+                    <div className="comparison-title comparison-title-light">{title}</div>
+                    <div className="comparison-desc comparison-desc-light">{desc}</div>
                   </div>
                 </div>
               ))}
@@ -212,12 +197,12 @@ export default function Home() {
           </div>
 
           {/* Corporate column */}
-          <div style={{ background: 'var(--card)', border: '1px solid var(--card-border)', borderRadius: 20, padding: '36px 32px', position: 'relative' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 24 }}>
-              <div style={{ background: 'var(--bg-alt)', borderRadius: 8, padding: '4px 12px', fontFamily: 'var(--mono)', fontSize: '0.7rem', fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: 1 }}>Big firms</div>
-              <div style={{ fontFamily: 'var(--mono)', fontSize: '0.75rem', color: 'var(--muted)' }}>// the corporate way</div>
+          <div className="comparison-card">
+            <div className="comparison-kicker-row">
+              <div className="comparison-pill">Big firms</div>
+              <div className="comparison-note">// the corporate way</div>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+            <div className="comparison-list">
               {[
                 ['🐌', '3–6 months', 'Slow onboarding, multiple review layers, delayed submissions'],
                 ['📞', 'Junior account managers', 'Your actual work is handled by juniors, reviewed late in the process'],
@@ -226,11 +211,11 @@ export default function Home() {
                 ['💲', 'Revision fees', 'Changes often attract additional billing'],
                 ['⏳', 'AusIndustry queries common', 'Rushed or templated claims attract more scrutiny'],
               ].map(([icon, title, desc], i) => (
-                <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', opacity: 0.7 }}>
-                  <div style={{ fontSize: '1.1rem', marginTop: 1 }}>{icon}</div>
+                <div className="comparison-item comparison-item-muted" key={i}>
+                  <div className="comparison-icon">{icon}</div>
                   <div>
-                    <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--charcoal)', marginBottom: 2 }}>{title}</div>
-                    <div style={{ fontSize: '0.8rem', color: 'var(--muted)', lineHeight: 1.5 }}>{desc}</div>
+                    <div className="comparison-title">{title}</div>
+                    <div className="comparison-desc">{desc}</div>
                   </div>
                 </div>
               ))}
@@ -238,7 +223,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div style={{ textAlign: 'center', marginTop: 36 }}>
+        <div className="comparison-cta">
           <Link href="/get-started" className="btn btn-primary">Get started for $500 →</Link>
         </div>
       </div>

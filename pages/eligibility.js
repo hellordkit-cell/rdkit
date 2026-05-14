@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import Head from 'next/head'
 import Link from 'next/link'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
+import SEO from '../components/SEO'
+import { seoPages } from '../lib/seo'
 
 const questions = [
   { question: 'Is your company incorporated in Australia (or an Australian tax resident)?', options: ['Yes', 'No', 'Not sure'], weights: [2, -5, 0] },
@@ -65,23 +66,7 @@ export default function Eligibility() {
 
   return (
     <>
-      <Head>
-        <title>Free R&D Tax Eligibility Quiz — Do You Qualify? | RDKit</title>
-        <meta name="description" content="2-minute quiz to find out if your Australian business qualifies for the R&D Tax Incentive. Get an instant result with your estimated offset. No sign-up required." />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="RDKit" />
-        <meta property="og:title" content="Free R&D Tax Eligibility Quiz — Do You Qualify? | RDKit" />
-        <meta property="og:description" content="2-minute quiz to find out if your Australian business qualifies for the R&D Tax Incentive. Get an instant result with your estimated offset. No sign-up required." />
-        <meta property="og:url" content="https://rdkit.com.au/eligibility" />
-        <meta property="og:image" content="https://rdkit.com.au/og-image.png" />
-        <meta property="og:locale" content="en_AU" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Free R&D Tax Eligibility Quiz — Do You Qualify? | RDKit" />
-        <meta name="twitter:description" content="2-minute quiz to find out if your Australian business qualifies for the R&D Tax Incentive. Get an instant result with your estimated offset. No sign-up required." />
-        <meta name="twitter:image" content="https://rdkit.com.au/og-image.png" />
-        <link rel="canonical" href="https://rdkit.com.au/eligibility" />
-      </Head>
+      <SEO page={seoPages.eligibility} />
 
       <Nav />
 
