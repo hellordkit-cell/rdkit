@@ -45,9 +45,9 @@ export default function Home() {
           <p className="hero-sub">
             We help Australian companies claim the R&D Tax Incentive at 5% of what you recover — not the 15–25% big consulting firms charge. Fast, transparent, expert.
           </p>
-          <div className="hero-ctas">
-            <Link href="/eligibility" className="btn btn-primary btn-arrow">Take the free quiz</Link>
-            <Link href="/how-it-works" className="btn btn-outline">See how it works</Link>
+          <div className="hero-secondary-actions" aria-label="Secondary homepage actions">
+            <Link href="/eligibility" className="hero-text-link">Check eligibility first →</Link>
+            <Link href="/how-it-works" className="hero-muted-link">See how it works</Link>
           </div>
           <div className="hero-trust">
             <div className="hero-trust-item">No win, no fee</div>
@@ -114,10 +114,6 @@ export default function Home() {
               estimatedAfterFee: keep,
             }}
           />
-
-          <Link href="/calculator" className="mini-calc-link">
-            Open Claim Assist →
-          </Link>
         </div>
       </div>
 

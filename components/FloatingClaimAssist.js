@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-const hiddenRoutes = ['/calculator', '/diagnostic']
+const hiddenRoutes = ['/', '/calculator', '/diagnostic', '/eligibility', '/get-started']
 const dismissalKey = 'rdkit:claim-assist-nudge-dismissed'
 
 export default function FloatingClaimAssist() {

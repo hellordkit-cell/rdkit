@@ -39,6 +39,7 @@ test('floating Claim Assist prompt is available outside the tool pages', () => {
   assert.match(prompt, /Try free Claim Assist/)
   assert.match(prompt, /Estimate your R&D benefit in 60 seconds\./)
   assert.match(prompt, /href="\/calculator"/)
+  assert.match(prompt, /'\/'/)
   assert.match(prompt, /'\/calculator'/)
   assert.match(prompt, /'\/diagnostic'/)
   assert.match(prompt, /rdkit:claim-assist-nudge-dismissed/)

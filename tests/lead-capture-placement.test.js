@@ -11,6 +11,9 @@ test('lead capture appears on the homepage mini calculator', () => {
 
   assert.match(source, /LeadCapture/)
   assert.match(source, /home-mini-calculator/)
+  assert.match(source, /hero-secondary-actions/)
+  assert.doesNotMatch(source, /className="btn btn-primary btn-arrow">Take the free quiz/)
+  assert.doesNotMatch(source, /Open Claim Assist/)
 })
 
 test('claim assistant gates the AI diagnostic instead of showing an embedded lead form', () => {
