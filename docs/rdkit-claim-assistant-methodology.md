@@ -1,8 +1,8 @@
-# RDKit Claim Assistant Methodology
+# RDKit Claim Assist Methodology
 
 ## Purpose
 
-The RDKit Claim Assistant is designed to turn a simple R&D Tax Incentive calculator into a guided claim discovery tool.
+RDKit Claim Assist is designed to turn a simple R&D Tax Incentive calculator into a guided claim discovery tool.
 
 The goal is not to replace a tax adviser or produce a lodgement-ready claim. The goal is to help a founder, finance lead, or accountant quickly understand three things:
 
@@ -22,7 +22,7 @@ The new positioning is:
 
 The user-facing experience is split into two connected surfaces:
 
-- **R&D Claim Assistant**: a SaaS-style financial estimate and claim position snapshot.
+- **R&D Claim Assist**: a SaaS-style financial estimate and claim position snapshot.
 - **AI Diagnostic Tool**: a guided discovery flow that asks about the project story, technical uncertainty, experimentation, and evidence.
 
 Together, they make RDKit feel more like a modern claim preparation assistant than a static marketing calculator.
@@ -158,7 +158,7 @@ This is intentionally not over-engineered. There is no account system, dashboard
 
 The visual hierarchy is:
 
-1. **Hero**: "R&D Claim Assistant"
+1. **Hero**: "R&D Claim Assist"
 2. **Input panel**: company profile, tax position, R&D spend.
 3. **Live snapshot**: current cash benefit, carried-forward offset, gross offset, fee, and amount kept.
 4. **Next step**: run AI diagnostic.
@@ -204,7 +204,7 @@ The methodology includes several guardrails:
 
 Key files:
 
-- `pages/calculator.js`: refreshed R&D Claim Assistant interface.
+- `pages/calculator.js`: refreshed R&D Claim Assist interface.
 - `pages/diagnostic.js`: guided AI diagnostic page.
 - `pages/api/diagnostic.js`: server-side diagnostic API and OpenAI integration.
 - `lib/rdtiDiagnostic.js`: deterministic calculation, scoring, evidence logic, and fallback diagnostic.
@@ -250,7 +250,7 @@ These are intentionally excluded from the first version to keep the product lean
 
 ## Summary
 
-The RDKit Claim Assistant methodology is built around a simple idea:
+The RDKit Claim Assist methodology is built around a simple idea:
 
 > The estimate should be precise enough to trust, and the AI should help discover what still needs to be proven.
 

@@ -25,7 +25,7 @@ export default function Footer() {
             <Link href="/how-it-works">How it works</Link>
             <Link href="/rdti-program">R&DTI Program</Link>
             <Link href="/for-accountants">For Accountants</Link>
-            <Link href="/calculator">Calculator</Link>
+            <Link href="/calculator">Claim Assist</Link>
           </div>
           <div className="footer-col">
             <div className="footer-col-title">Company</div>

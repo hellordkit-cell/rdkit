@@ -105,7 +105,7 @@ export default function Diagnostic() {
         companyTaxRate,
       }))
       setPrefillNotice(
-        'Estimate imported from the Claim Assistant. This AI-assisted diagnostic may be wrong and is not tax advice; RDKit should review the facts and evidence.'
+        'Estimate imported from Claim Assist. This AI-assisted diagnostic may be wrong and is not tax advice; RDKit should review the facts and evidence.'
       )
     } catch (err) {
       window.sessionStorage.removeItem('rdkit:diagnostic-prefill')

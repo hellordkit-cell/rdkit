@@ -6,7 +6,7 @@ const navLinks = [
   { href: '/how-it-works', label: 'How it works' },
   { href: '/rdti-program', label: 'R&DTI Program' },
   { href: '/for-accountants', label: 'For Accountants' },
-  { href: '/calculator', label: 'Calculator' },
+  { href: '/calculator', label: 'Claim Assist' },
   { href: '/about', label: 'About' },
 ]
 

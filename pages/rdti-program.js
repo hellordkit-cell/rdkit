@@ -231,7 +231,7 @@ export default function RdtiProgram() {
           <p>Our free eligibility quiz gives you an instant answer and a rough estimate. No sign-up required.</p>
           <div className="cta-btns">
             <Link href="/eligibility" className="btn-white btn-arrow">Take the free quiz</Link>
-            <Link href="/calculator" className="btn-white-outline">Estimate your offset →</Link>
+            <Link href="/calculator" className="btn-white-outline">Open Claim Assist →</Link>
           </div>
         </div>
       </div>

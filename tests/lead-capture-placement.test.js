@@ -41,7 +41,7 @@ test('diagnostic page can import calculator context from the gate', () => {
   const source = read('pages/diagnostic.js')
 
   assert.match(source, /rdkit:diagnostic-prefill/)
-  assert.match(source, /Estimate imported from the Claim Assistant/)
+  assert.match(source, /Estimate imported from Claim Assist/)
 })
 
 test('lead gate modal includes AI acknowledgement and lead submission', () => {

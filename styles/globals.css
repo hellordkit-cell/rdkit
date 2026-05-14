@@ -459,6 +459,34 @@ footer {
 .tag-sage { background: var(--sage-light); color: var(--sage); }
 .tag-coral { background: rgba(255,107,84,0.1); color: var(--coral); }
 .tag-purple { background: var(--purple-light); color: var(--purple); }
+.claim-ai-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(0,180,216,0.18);
+  background: var(--cyan-light);
+  color: var(--cyan);
+  border-radius: 999px;
+  padding: 8px 13px;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+.claim-spark {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: white;
+  color: var(--coral);
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  line-height: 1;
+}
 
 .page-container { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
 

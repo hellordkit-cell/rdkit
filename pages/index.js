@@ -116,7 +116,7 @@ export default function Home() {
           />
 
           <Link href="/calculator" className="mini-calc-link">
-            Open full calculator with breakdown →
+            Open Claim Assist →
           </Link>
         </div>
       </div>

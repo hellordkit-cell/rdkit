@@ -67,9 +67,12 @@ export default function Calculator() {
       <div className="calc-page">
         <div className="calc-hero">
           <div>
-            <div className="tag tag-cyan" style={{ marginBottom: 16 }}>Claim assist</div>
-            <h1>R&D Claim Assistant</h1>
-            <p>Estimate your offset, understand your cash position, and prepare the right evidence for review.</p>
+            <div className="claim-ai-badge">
+              <span className="claim-spark" aria-hidden="true">✦</span>
+              AI-assisted claim estimate
+            </div>
+            <h1>R&D Claim Assist</h1>
+            <p>Estimate your offset, understand your cash position, and use AI-assisted discovery to prepare the right evidence for review.</p>
           </div>
           <div className="assist-hero-panel" aria-label="Claim assistant workflow">
             <span>Estimate</span>
@@ -203,7 +206,7 @@ export default function Calculator() {
 
             <div className="assistant-next">
               <span>Next best step</span>
-              <p>Use the AI diagnostic to test eligibility signals and prepare the right evidence list.</p>
+              <p>Start the AI-assisted diagnostic to test eligibility signals and prepare the right evidence list.</p>
               <button
                 type="button"
                 className="btn btn-primary btn-arrow"
@@ -280,7 +283,7 @@ export default function Calculator() {
         onSuccess={continueToDiagnostic}
         source="claim-assistant-diagnostic-gate"
         context={diagnosticContext}
-        title="Run the AI claim diagnostic"
+        title="Start AI claim diagnostic"
         description="We will carry your estimate into the diagnostic and use these details so RDKit can follow up if the claim looks worth reviewing."
         ctaLabel="Continue to AI diagnostic"
       />
