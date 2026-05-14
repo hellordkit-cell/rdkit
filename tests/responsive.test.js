@@ -27,4 +27,5 @@ test('phone breakpoint stacks the primary page components', () => {
   assert.match(css, /\.comparison-grid\s*\{[^}]*grid-template-columns: 1fr/s)
   assert.match(css, /\.hero-ctas \.btn\s*\{[^}]*width: 100%/s)
   assert.match(css, /\.mini-result-row\s*\{[^}]*flex-wrap: wrap/s)
+  assert.match(css, /\.lead-fields\s*\{[^}]*grid-template-columns: 1fr/s)
 })

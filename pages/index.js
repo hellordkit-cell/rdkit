@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import LeadCapture from '../components/LeadCapture'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import SEO from '../components/SEO'
@@ -97,6 +98,22 @@ export default function Home() {
               <span className="rlabel" style={{ color: 'var(--sage)', fontSize: '0.75rem' }}>★ Loss companies receive full offset as cash</span>
             </div>
           </div>
+
+          <LeadCapture
+            source="home-mini-calculator"
+            compact
+            title="Send me this estimate"
+            description="Leave your details and RDKit can check whether this offset is worth pursuing."
+            ctaLabel="Send estimate"
+            context={{
+              turnoverBand: size,
+              spend,
+              estimatedOffset: gross,
+              estimatedCash: net,
+              rdkitFee: fee,
+              estimatedAfterFee: keep,
+            }}
+          />
 
           <Link href="/calculator" className="mini-calc-link">
             Open full calculator with breakdown →
@@ -299,6 +316,14 @@ export default function Home() {
             <Link href="/eligibility" className="btn-white btn-arrow">Take the free quiz</Link>
             <Link href="/for-accountants" className="btn-white-outline">Are you an accountant? →</Link>
           </div>
+          <LeadCapture
+            source="home-final-cta"
+            variant="dark"
+            compact
+            title="Prefer RDKit to check it?"
+            description="Share your company and email, and we can follow up with the simplest next step."
+            ctaLabel="Ask RDKit"
+          />
         </div>
       </div>
 

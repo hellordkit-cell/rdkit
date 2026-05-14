@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import LeadCapture from './LeadCapture'
 
 export default function Footer() {
   return (
@@ -7,6 +8,16 @@ export default function Footer() {
         <div className="footer-brand">
           <div className="footer-logo">rdkit</div>
           <p className="footer-tagline">Australia&rsquo;s fairest R&D tax claim service.</p>
+        </div>
+        <div className="footer-lead">
+          <LeadCapture
+            source="site-footer"
+            variant="footer"
+            compact
+            title="Ask RDKit to check your claim"
+            description="Leave company and email details and we can point you to the right next step."
+            ctaLabel="Ask RDKit"
+          />
         </div>
         <div className="footer-links-group">
           <div className="footer-col">
