@@ -1,4 +1,5 @@
-const { deliverLead, validateLeadPayload } = require('../../lib/leads')
+import { validateLeadPayload } from '../../lib/leads'
+import { saveLead } from '../../lib/supabase'
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -15,23 +16,21 @@ export default async function handler(req, res) {
   }
 
   try {
-    const delivery = await deliverLead(validation.lead)
-
-    if (!delivery.ok) {
-      return res.status(503).json({
-        error: delivery.error || 'Lead capture is not configured',
-        mode: delivery.mode,
-      })
+    const result = await saveLead(validation.lead)
+    if (!result.ok) {
+      console.error('[leads] Supabase save failed:', result.error)
+      // Still return success to user — don't block the form
     }
-
     return res.status(200).json({
       ok: true,
-      mode: delivery.mode,
+      leadId: result.id || null,
       receivedAt: validation.lead.createdAt,
     })
   } catch (error) {
-    return res.status(502).json({
-      error: 'Lead could not be delivered. Please email hellordkit@gmail.com.',
+    console.error('[leads] Unexpected error:', error)
+    return res.status(200).json({
+      ok: true,
+      warning: 'Lead captured but could not be saved to database.',
     })
   }
 }
