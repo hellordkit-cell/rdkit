@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { BOOKING_URL } from '../lib/constants'
 
 const navLinks = [
   { href: '/how-it-works', label: 'How it works' },
@@ -40,6 +41,7 @@ export default function Nav() {
           ))}
         </div>
         <div className="nav-actions">
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="btn btn-outline nav-cta" style={{ padding: '10px 20px' }}>📅 Book a call</a>
           <Link href="/eligibility" className="btn btn-outline nav-cta nav-cta-eligibility">Check eligibility</Link>
           <Link href="/get-started" className="btn btn-primary nav-cta nav-cta-deposit">Pay deposit →</Link>
         </div>
@@ -76,6 +78,7 @@ export default function Nav() {
             </Link>
           ))}
           <div className="nav-mobile-actions">
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="btn btn-outline nav-mobile-cta">📅 Book a call</a>
             <Link href="/eligibility" className="btn btn-outline nav-mobile-cta">Check eligibility</Link>
             <Link href="/get-started" className="btn btn-primary nav-mobile-cta">Pay deposit →</Link>
           </div>

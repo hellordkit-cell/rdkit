@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
+import { BOOKING_URL } from '../lib/constants'
 import SEO from '../components/SEO'
 import { seoPages } from '../lib/seo'
 
@@ -371,7 +372,21 @@ export default function HowItWorks() {
         ))}
       </div>
 
-      <Footer />
+
+      {/* Book a call CTA */}
+      <div className="home-cta fade-up">
+        <div className="cta-card">
+          <div className="tag tag-coral" style={{ marginBottom: 20, display: 'inline-flex' }}>Free. No commitment.</div>
+          <h2>Ready to talk? Book a strategy call.</h2>
+          <p>Pick a time that suits you — 20 minutes to check eligibility, or a full 45-minute strategy session once you&rsquo;re ready to begin.</p>
+          <div className="cta-btns">
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="btn-white btn-arrow">📅 Book on Google Calendar</a>
+            <Link href="/eligibility" className="btn-white-outline">Take the free quiz →</Link>
+          </div>
+        </div>
+      </div>
+
+            <Footer />
     </>
   )
 }

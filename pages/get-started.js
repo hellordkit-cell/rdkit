@@ -2,11 +2,12 @@ import Link from 'next/link'
 import { useEffect } from 'react'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
+import { BOOKING_URL, STRIPE_PAYMENT_LINK } from '../lib/constants'
 import SEO from '../components/SEO'
 import { seoPages } from '../lib/seo'
 
 // ─── Replace this with your real Stripe Payment Link URL ───────────────────
-const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/eVq9AS8ezg9Xd3n0DOdnW00'
+// STRIPE_PAYMENT_LINK now imported from lib/constants
 // ────────────────────────────────────────────────────────────────────────────
 
 export default function GetStarted() {
@@ -93,6 +94,13 @@ export default function GetStarted() {
         </div>
 
         {/* Alternative */}
+        <div className="fade-up" style={{ textAlign: 'center', padding: '24px', background: 'var(--bg-alt)', borderRadius: 16, marginBottom: 32 }}>
+          <p style={{ fontSize: '0.875rem', color: 'var(--muted)', marginBottom: 8 }}>Not ready yet? Book a free 20-min eligibility call first.</p>
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--coral)', fontWeight: 600, fontSize: '0.9rem', textDecoration: 'none' }}>
+            📅 Book on Google Calendar →
+          </a>
+        </div>
+
         <div className="fade-up" style={{ textAlign: 'center', padding: '24px', background: 'var(--bg-alt)', borderRadius: 16, marginBottom: 32 }}>
           <p style={{ fontSize: '0.875rem', color: 'var(--muted)', marginBottom: 8 }}>Prefer to pay by bank transfer or need an invoice first?</p>
           <a href="mailto:hellordkit@gmail.com" style={{ color: 'var(--coral)', fontWeight: 600, fontSize: '0.9rem', textDecoration: 'none' }}>

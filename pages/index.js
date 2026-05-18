@@ -38,7 +38,7 @@ export default function Home() {
       {/* Hero + Mini Calculator */}
       <div className="home-hero">
         <div className="hero-left">
-          <div className="hero-badge">✦ Now open for FY2025-26 claims</div>
+          <div className="hero-badge">✦ Now open for FY2026-27 claims</div>
           <h1 className="hero-h1">
             Your R&D is<br/>worth more than<br/>you <span className="hl">realise</span>
           </h1>
